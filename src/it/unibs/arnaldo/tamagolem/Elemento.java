@@ -3,20 +3,22 @@ package it.unibs.arnaldo.tamagolem;
 public class Elemento {
     private String name;
     private int sumMax;
-    private int sumEnt;
-    private int sumUsc;
+    private int sumAct;
+    private int nArchiRim;
 
-    public Elemento(String name){
+    public Elemento(String name, int nArchiTot){
         this.name = name;
-        sumEnt = 0;
-        sumUsc = 0;
+        this.sumAct = 0;
+        this.nArchiRim = nArchiTot;
     }
 
-    public void setSumEnt(int sumEnt) {
-        this.sumEnt = sumEnt;
+    public void addValEnt(int val) {
+        this.sumAct += val;
+        nArchiRim--;
     }
-    public void setSumUsc(int sumUsc) {
-        this.sumUsc = sumUsc;
+    public void addValUsc(int val) {
+        this.sumAct -= val;
+        nArchiRim--;
     }
     public void setSumMax(int sumMax) {
         this.sumMax = sumMax;
@@ -26,13 +28,7 @@ public class Elemento {
         return name;
     }
     public int getSumAct() {
-        return sumEnt+sumUsc;
-    }
-    public int getSumEnt() {
-        return sumEnt;
-    }
-    public int getSumUsc() {
-        return sumUsc;
+        return sumAct;
     }
     public int getSumMax() {
         return sumMax;
