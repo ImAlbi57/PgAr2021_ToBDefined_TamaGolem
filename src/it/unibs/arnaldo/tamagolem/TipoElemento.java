@@ -1,6 +1,6 @@
 package it.unibs.arnaldo.tamagolem;
 
-public enum Elementi {
+public enum TipoElemento {
     ARIA,
     FUOCO,
     TERRA,

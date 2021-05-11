@@ -1,13 +1,13 @@
 package it.unibs.arnaldo.tamagolem;
 
 public class Elemento {
-    private String name;
+    private TipoElemento tipo;
     private int sumMax;
     private int sumAct;
     private int nArchiRim;
 
-    public Elemento(String name, int nArchiTot){
-        this.name = name;
+    public Elemento(TipoElemento tipo, int nArchiTot){
+        this.tipo = tipo;
         this.sumAct = 0;
         this.nArchiRim = nArchiTot;
     }
@@ -24,8 +24,8 @@ public class Elemento {
         this.sumMax = sumMax;
     }
 
-    public String getName() {
-        return name;
+    public TipoElemento getTipo() {
+        return tipo;
     }
     public int getSumAct() {
         return sumAct;
@@ -47,6 +47,6 @@ public class Elemento {
             return false;
         Elemento elemento = (Elemento) obj;
         // field comparison
-        return name.equals(elemento.getName());
+        return tipo.equals(elemento.getTipo());
     }
 }

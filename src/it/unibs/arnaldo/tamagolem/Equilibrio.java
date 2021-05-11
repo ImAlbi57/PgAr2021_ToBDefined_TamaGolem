@@ -18,7 +18,7 @@ public class Equilibrio {
 
     //aggiunge n elementi !!! verifica il valore di setsummax
     private void initElementi(int num){
-        String possibili[] = {"ARIA", "FUOCO", "TERRA", "ERBA", "ACQUA", "ROCCIA", "BUIO", "ELETTRO", "VELENO", "GHIACCIO"};
+        TipoElemento possibili[] = TipoElemento.values();
         for(int i=0; i<num; i++){
             Elemento e = new Elemento(possibili[i], num-1);
             e.setSumMax(nElementi-1);
@@ -105,15 +105,15 @@ public class Equilibrio {
         return sum;
     }
 
-    public int getMultiplier(Elemento attaccante, Elemento subente){
+    public int getMultiplier(TipoElemento attaccante, TipoElemento subente){
         int posAtk = getElementValue(attaccante);
         int posDef = getElementValue(subente);
 
         return adiacenza[posAtk][posDef];
     }
 
-    public int getElementValue(Elemento e){
-        return elementi.indexOf(e);
+    public int getElementValue(TipoElemento e){
+        return elementi.indexOf(new Elemento(e, nElementi-1));
     }
 
     public void printCarino(){
@@ -121,11 +121,11 @@ public class Equilibrio {
         System.out.print("/  ");
         //Stampa la riga con le iniziali e va a capo
         for(int i=0; i<nElementi; i++)
-            System.out.print(elementi.get(i).getName().charAt(0) + "  ");
+            System.out.print(elementi.get(i).getTipo().toString().charAt(0) + "  ");
         System.out.println();
 
         for(int i=0; i<nElementi; i++) {
-            System.out.print("" + elementi.get(i).getName().charAt(0));
+            System.out.print("" + elementi.get(i).getTipo().toString().charAt(0));
             for(int j=0; j<nElementi; j++){
                 System.out.printf("%3d", adiacenza[i][j]);
             }
@@ -135,16 +135,16 @@ public class Equilibrio {
 
     public void printPesiAttuali(){
         for (int i = 0; i < nElementi; i++) {
-            System.out.println(elementi.get(i).getName() + " -> " + elementi.get(i).getSumAct());
+            System.out.println(elementi.get(i).getTipo() + " -> " + elementi.get(i).getSumAct());
         }
     }
 
     public void printPesiElem(){
         for (int i = 0; i < nElementi; i++) {
-            System.out.print(elementi.get(i).getName() + " -> ");
+            System.out.print(elementi.get(i).getTipo() + " -> ");
             for (int j = 0; j < nElementi; j++) {
                 if(i != j){
-                    System.out.print(elementi.get(j).getName() + ": " + adiacenza[i][j] + ";  ");
+                    System.out.print(elementi.get(j).getTipo() + ": " + adiacenza[i][j] + ";  ");
                 }
             }
             System.out.println();
