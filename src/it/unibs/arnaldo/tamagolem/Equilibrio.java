@@ -1,6 +1,5 @@
 package it.unibs.arnaldo.tamagolem;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,13 +7,11 @@ public class Equilibrio {
     private ArrayList<Elemento> elementi;
     private int [][] adiacenza;
     private int nElementi;
-    private int pesiAtt;
 
     public Equilibrio(int nElementi){
         this.nElementi = nElementi;
         this.elementi = new ArrayList<>();
         this.adiacenza = new int[nElementi][nElementi];
-        this.pesiAtt = 0;
         initElementi(nElementi);
         initValues();
     }
@@ -30,7 +27,6 @@ public class Equilibrio {
     }
 
     public void initValues(){
-        Random rand = new Random();
         for(int i = 0; i < nElementi-1; i++) {
             for (int j = 0; j < nElementi-1; j++) {
                 //Se siamo su un elemento della diagonale (fuoco-fuoco, acqua-acqua) mettiamo a 0
@@ -131,7 +127,7 @@ public class Equilibrio {
         for(int i=0; i<nElementi; i++) {
             System.out.print("" + elementi.get(i).getName().charAt(0));
             for(int j=0; j<nElementi; j++){
-                System.out.print(String.format("%3d", adiacenza[i][j]));
+                System.out.printf("%3d", adiacenza[i][j]);
             }
             System.out.println();
         }
