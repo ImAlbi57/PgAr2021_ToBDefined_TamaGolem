@@ -26,6 +26,21 @@ public class Evocazione {
 
     public void evocaTama() {
 
+        int maxPower;
+        if (tamaPlay1 > 0) {
+            System.out.println("Il giocatore 1 puo' evocare il suo TamaGolem");
+
+
+
+        } else{
+            System.out.println("Il giocatore non possiede Tamagolem, non puo' partecipare allo scontro");
+        }
+
+        if (tamaPlay2 > 0) {
+            System.out.println("Il giocatore 1 puo' evocare il suo TamaGolem");
+        } else{
+            System.out.println("Il giocatore non possiede Tamagolem, non puo' partecipare allo scontro");
+        }
 
     }
 

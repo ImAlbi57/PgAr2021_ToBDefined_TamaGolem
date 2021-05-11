@@ -21,13 +21,6 @@ public class Scontro {
         return player2;
     }
 
-    public void validateGiocatore(){
-
-
-
-
-
-    }
 
 
 
