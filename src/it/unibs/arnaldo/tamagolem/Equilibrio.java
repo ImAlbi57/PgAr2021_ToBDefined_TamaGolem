@@ -7,18 +7,20 @@ public class Equilibrio {
     private ArrayList<Elemento> elementi;
     private int [][] adiacenza;
     private int nElementi;
+    private int maxPotenza;
 
     public Equilibrio(int nElementi){
         this.nElementi = nElementi;
         this.elementi = new ArrayList<>();
         this.adiacenza = new int[nElementi][nElementi];
+        this.maxPotenza = nElementi-1;
         initElementi(nElementi);
         initValues();
     }
 
     //aggiunge n elementi !!! verifica il valore di setsummax
     private void initElementi(int num){
-        TipoElemento possibili[] = TipoElemento.values();
+        TipoElemento[] possibili = TipoElemento.values();
         for(int i=0; i<num; i++){
             Elemento e = new Elemento(possibili[i], num-1);
             e.setSumMax(nElementi-1);
@@ -66,24 +68,30 @@ public class Equilibrio {
 
     private void creaArcoPesato(int posForte, int posDebole) {
         //Imposto il forte a un valore random tra 1 e il massimo disponibile
-        Random rand = new Random();
-        int maxRand;
-        /*int pesoMancante = elementi.get(posForte).getSumMax()-elementi.get(posForte).getSumAct();
-        if(pesoMancante > 1 && pesoMancante < 4)
-            maxRand = pesoMancante;
-        else maxRand = 4;*/
-        maxRand = 4;
-        int peso;
-        do {
-            peso = rand.nextInt(maxRand) + 1;
-            System.out.println(elementi.get(posForte).getSumAct() + " " + peso);
-        }while (Math.abs(elementi.get(posForte).getSumAct()) - peso == 0 || Math.abs(elementi.get(posDebole).getSumAct()) - peso == 0);
+        int peso = genPeso(posForte, posDebole);
 
         adiacenza[posForte][posDebole] = peso;
         elementi.get(posForte).addValUsc(peso);
         //Imposto il debole al negativo del peso
         adiacenza[posDebole][posForte] = -peso;
         elementi.get(posDebole).addValEnt(peso);
+    }
+
+    private int genPeso(int posForte, int posDebole) {
+        Random rand = new Random();
+        int maxRand = 4;
+        while(Math.abs(elementi.get(posForte).getSumAct() - maxRand) > maxPotenza ||
+                Math.abs(elementi.get(posDebole).getSumAct() + maxRand) > maxPotenza){
+            maxRand--;
+        }
+        int peso;
+        do {
+            peso = rand.nextInt(maxRand) + 1;
+            System.out.println(elementi.get(posForte).getSumAct() + " " + peso);
+        }while (elementi.get(posForte).getSumAct() - peso == 0 ||
+                elementi.get(posDebole).getSumAct() + peso == 0
+        );
+        return peso;
     }
 
     public boolean checkEquilibrio(){
@@ -105,7 +113,7 @@ public class Equilibrio {
         return sum;
     }
 
-    public int getMultiplier(TipoElemento attaccante, TipoElemento subente){
+    public int getPotenza(TipoElemento attaccante, TipoElemento subente){
         int posAtk = getElementValue(attaccante);
         int posDef = getElementValue(subente);
 
