@@ -8,21 +8,18 @@ public class Squadra {
     //inizializzo le variabili
     private String nome;
     private ArrayList<TamaGolem> tamagolems;
-    private final double NUM_ELEMENTI = 5;
-    private final double NUM_PIETRE = NumPietre(NUM_ELEMENTI);
-    private final double NUM_GOLEM = NumGolem(NUM_ELEMENTI, NUM_PIETRE);
 
     //VOLEVO CREARE HASHMAP CON NOME GIOCATORE E ARRAYLIST DI TAMAGOLEM....
 
     //costruttore della squadra
     public Squadra(String nome, ArrayList<TamaGolem> tamagolems) {
-        this.nome = nome = ValidateName();
+        this.nome = nome;
         this.tamagolems = tamagolems;
     }
 
     public Squadra() {
         this.nome = ValidateName();
-//		this.tamagolems = tamagolems;
+        //this.tamagolems = tamagolems;
     }
 
 
@@ -33,41 +30,6 @@ public class Squadra {
 
     public ArrayList<TamaGolem> getTamagolems() {
         return tamagolems;
-    }
-
-    public double getNUM_ELEMENTI() {
-        return NUM_ELEMENTI;
-    }
-
-    public double getNUM_PIETRE() {
-        return NUM_PIETRE;
-    }
-
-    public double getNUM_GOLEM() {
-        return NUM_GOLEM;
-    }
-
-
-    //metodo per calcolare il numero di pietre che può tenere ogni tamagolem
-    public double NumPietre(double num_elementi){
-        double num_pietre;
-
-        //calcolo ilnumero di pietre
-        num_pietre = Math.ceil((num_elementi + 1) / 3) + 1;
-
-        return num_pietre;
-    }
-
-
-    //metodo per calcolare il numero di tamagolem nell'arraylist
-    public double NumGolem(double num_elementi, double num_pietre){
-        double numGolem;
-        num_pietre = NumPietre(num_elementi);
-
-        //calcolo il numero di golem
-        numGolem = Math.ceil((num_elementi-1)*(num_elementi-2)/(2*num_pietre));
-
-        return numGolem;
     }
 
 
@@ -84,9 +46,10 @@ public class Squadra {
             String nome = InputDati.leggiStringaNonVuota(TamaMessage.getMessNome()).toUpperCase();
             nomi.add(nome);
 
-            //ricerca del nome nell'arraylist
+            //se è il primo nome inserito, allora è valido
             if(nomi.size()==1) return nome;
 
+            //ricerca del nome nell'arraylist
             index = search(nome);
 
             //output se il nome è già stato scelto
