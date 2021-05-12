@@ -22,8 +22,31 @@ public class Scontro {
     }
 
 
+    //////////////////aggiunte per testare l input dei nomi
 
+    private String nome1;
+    private String nome2;
+    private Squadra squadra1;
+    private Squadra squadra2;
+    //costruttore random
+    public Scontro() {
 
+    }
+
+    //metodo per impedire che i due nomi corrispondano
+    public void SceltaNome() {
+        do{
+            nome1 = InputDati.leggiStringa("Inserisci il nome del giocatore1: ").toUpperCase().trim();
+            nome2 = InputDati.leggiStringa("Inserisci il nome del giocatore2: ").toUpperCase().trim();
+
+            if(nome1.equals(nome2)) {
+                System.out.println("\r\nI nomi dei due giocatori non possono essere uguali\r\n");
+            }
+        }while (nome1.equals(nome2));
+
+        squadra1 = new Squadra(nome1);
+        squadra2 = new Squadra(nome2);
+    }
     /*String giocatore1 = InputDati.leggiStringa("Inserisci il nome del giocatore");
     String giocatore2 = InputDati.leggiStringa("Inserisci il nome del giocatore");*/
 

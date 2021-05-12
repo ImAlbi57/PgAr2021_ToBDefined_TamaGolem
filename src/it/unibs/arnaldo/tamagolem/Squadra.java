@@ -1,5 +1,7 @@
 package it.unibs.arnaldo.tamagolem;
 
+import it.unibs.fp.mylib.InputDati;
+
 import java.util.ArrayList;
 
 public class Squadra {
@@ -14,7 +16,8 @@ public class Squadra {
         this.tamagolems = tamagolems;
     }
 
-    public Squadra() {
+    public Squadra(String nome) {
+        this.nome = nome;
         this.tamagolems = new ArrayList<>();
     }
 

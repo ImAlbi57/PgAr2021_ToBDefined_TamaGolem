@@ -7,6 +7,7 @@ public class Main {
         //richiamo il messaggio di benvenuto
         System.out.println(TamaMessage.getSaluto());
 
+
         //inizializzo le variabili
         int scelta;
 
@@ -24,7 +25,10 @@ public class Main {
 
                         switch(scelta) {
                             //scegli o modifica i nomi dei giocatori
-                            case 1: break;
+                            case 1:
+                                Scontro scontro = new Scontro();
+                                scontro.SceltaNome();
+                                break;
 
                             //comincia lo scontro
                             case 2: break;
