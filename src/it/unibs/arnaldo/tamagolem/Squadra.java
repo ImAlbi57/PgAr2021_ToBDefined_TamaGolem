@@ -1,6 +1,5 @@
 package it.unibs.arnaldo.tamagolem;
 
-import it.unibs.fp.mylib.InputDati;
 import java.util.ArrayList;
 
 public class Squadra {
@@ -9,8 +8,6 @@ public class Squadra {
     private String nome;
     private ArrayList<TamaGolem> tamagolems;
 
-    //VOLEVO CREARE HASHMAP CON NOME GIOCATORE E ARRAYLIST DI TAMAGOLEM....
-
     //costruttore della squadra
     public Squadra(String nome, ArrayList<TamaGolem> tamagolems) {
         this.nome = nome;
@@ -18,10 +15,8 @@ public class Squadra {
     }
 
     public Squadra() {
-        this.nome = ValidateName();
-        //this.tamagolems = tamagolems;
+        this.tamagolems = new ArrayList<>();
     }
-
 
     //GETTERS
     public String getNome() {
@@ -32,9 +27,9 @@ public class Squadra {
         return tamagolems;
     }
 
-
     ////////////////////////////////////////////////////////////////////////
     //////DA AGGIUSTARE: SEMBRA CHE NON MANTENGA IL VALORE INSERITO.////////
+    /*
     ArrayList<String> nomi = new ArrayList<>();
     public String ValidateName(){
         //inizializzo l'indice come se fosse corretto
@@ -79,18 +74,5 @@ public class Squadra {
             }
         }
         return index;
-    }
-
-
-    //Getter, ritorna un tamagotchi dato l'indice
-    public String getNome(int index) {
-        return nomi.get(index);
-    }
-
-    public void PrintProva() {
-        for(String str : nomi) {
-            System.out.println(str);
-        }
-    }
-
+    }*/
 }
