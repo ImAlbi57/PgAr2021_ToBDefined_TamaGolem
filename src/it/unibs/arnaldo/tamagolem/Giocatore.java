@@ -4,19 +4,19 @@ import it.unibs.fp.mylib.InputDati;
 
 import java.util.ArrayList;
 
-public class Squadra {
+public class Giocatore {
 
     //inizializzo le variabili
     private String nome;
     private ArrayList<TamaGolem> tamagolems;
 
     //costruttore della squadra
-    public Squadra(String nome, ArrayList<TamaGolem> tamagolems) {
+    public Giocatore(String nome, ArrayList<TamaGolem> tamagolems) {
         this.nome = nome;
         this.tamagolems = tamagolems;
     }
 
-    public Squadra(String nome) {
+    public Giocatore(String nome) {
         this.nome = nome;
         this.tamagolems = new ArrayList<>();
     }
