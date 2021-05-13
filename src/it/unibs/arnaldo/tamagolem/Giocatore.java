@@ -6,11 +6,15 @@ import java.util.ArrayList;
 
 public class Giocatore {
 
-    //inizializzo le variabili
     private String nome;
     private ArrayList<TamaGolem> tamagolems;
 
-    //costruttore della squadra
+    //costruttore del giocatore
+    public Giocatore(Giocatore g){
+        this.nome = g.getNome();
+        this.tamagolems = new ArrayList<>(g.getTamagolems());
+    }
+
     public Giocatore(String nome, ArrayList<TamaGolem> tamagolems) {
         this.nome = nome;
         this.tamagolems = tamagolems;
@@ -19,6 +23,22 @@ public class Giocatore {
     public Giocatore(String nome) {
         this.nome = nome;
         this.tamagolems = new ArrayList<>();
+    }
+
+    public boolean hasTamagolem() {
+        for(TamaGolem t : tamagolems){
+            if(t.getVita()>0){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void inputTama(){
+        for (int i = 0; i < Config.getNumGolem(); i++) {
+            String nome = InputDati.leggiStringaNonVuota("Inserisci il nome del Tamagolem: ");
+            tamagolems.add(new TamaGolem(nome));
+        }
     }
 
     //GETTERS
@@ -30,52 +50,38 @@ public class Giocatore {
         return tamagolems;
     }
 
-    ////////////////////////////////////////////////////////////////////////
-    //////DA AGGIUSTARE: SEMBRA CHE NON MANTENGA IL VALORE INSERITO.////////
-    /*
-    ArrayList<String> nomi = new ArrayList<>();
-    public String ValidateName(){
-        //inizializzo l'indice come se fosse corretto
-        int index = 0;
 
-        //ciclo while per ripetere l'azione finchè non si inserisce un nome mai utilizzato
-        while(index != -1) {
-            //inserimento del nome
-            String nome = InputDati.leggiStringaNonVuota(TamaMessage.getMessNome()).toUpperCase();
-            nomi.add(nome);
+    public TamaGolem selectTamagolem() {
+        //Controllo se sono presenti tamagolem
+        if(tamagolems.size() <= 0)
+            return null;
 
-            //se è il primo nome inserito, allora è valido
-            if(nomi.size()==1) return nome;
+        //Prende in input dall'utente la posizione del golem (controlli)
+        int posScelta = -1;
+        boolean finito = false;
+        //Stampa i tamagolem disponibili
+        while(!finito){
+            System.out.println("Scegli il tamagolem da evocare");
+            stampaGolem();
+            posScelta = InputDati.leggiIntero("Scelta: ", 0,tamagolems.size()-1);
 
-            //ricerca del nome nell'arraylist
-            index = search(nome);
-
-            //output se il nome è già stato scelto
-            if(index != -1) {
-                System.out.println("\r\nIl nome inserito è gia stato utilizzato per un altro tamagotchi."
-                        + "\r\nSceglierne un altro.");
-            }
-            //output se il nome è nuovo
-            else if(index == -1) return nome;
+            if(!tamagolems.get(posScelta).isUsato())
+                finito = true;
         }
-        //ritorno vuoto per non far andare in errore il metodo
-        return "";
+
+        //Imposto ad usato il tamagolem
+        tamagolems.get(posScelta).setUsato(true);
+
+        //Ritorno
+        return tamagolems.get(posScelta);
+    }
+
+    private void stampaGolem(){
+        for (int i = 0; i <tamagolems.size(); i++) {
+            if(!tamagolems.get(i).isUsato())
+                System.out.println("("+i+")" + tamagolems.get(i));
+        }
     }
 
 
-    public int search(String nome){
-        //inizializzo la variabile indice come se fosse già in errore (non ci sono indici inferiori a 0 in un array)
-        int index = -1;
-
-        if(nomi.size() <= 1) return index;
-
-        //ciclo for per passare in rassegna uno ad uno tutti gli oggetti tamagotchi contenuti nell'arraylist, si interrompe quando lo trova
-        for(int i=0; i < nomi.size(); i++) {
-            if(nome.equals(getNome(i))) {
-                index = nomi.indexOf(nome);
-                break;
-            }
-        }
-        return index;
-    }*/
 }

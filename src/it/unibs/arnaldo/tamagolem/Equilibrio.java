@@ -1,19 +1,19 @@
 package it.unibs.arnaldo.tamagolem;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Equilibrio {
     private ArrayList<Elemento> elementi;
     private int [][] adiacenza;
     private int nElementi;
-    private int maxPotenza;
 
     public Equilibrio(int nElementi){
         this.nElementi = nElementi;
         this.elementi = new ArrayList<>();
         this.adiacenza = new int[nElementi][nElementi];
-        this.maxPotenza = nElementi-1;
         initElementi(nElementi);
         initValues();
     }
@@ -80,14 +80,14 @@ public class Equilibrio {
     private int genPeso(int posForte, int posDebole) {
         Random rand = new Random();
         int maxRand = 4;
-        while(Math.abs(elementi.get(posForte).getSumAct() - maxRand) > maxPotenza ||
-                Math.abs(elementi.get(posDebole).getSumAct() + maxRand) > maxPotenza){
+        while(Math.abs(elementi.get(posForte).getSumAct() - maxRand) > Config.getMaxPotenza() ||
+                Math.abs(elementi.get(posDebole).getSumAct() + maxRand) > Config.getMaxPotenza()){
             maxRand--;
         }
         int peso;
         do {
             peso = rand.nextInt(maxRand) + 1;
-            System.out.println(elementi.get(posForte).getSumAct() + " " + peso);
+            //System.out.println(elementi.get(posForte).getSumAct() + " " + peso);
         }while (elementi.get(posForte).getSumAct() - peso == 0 ||
                 elementi.get(posDebole).getSumAct() + peso == 0
         );
@@ -122,6 +122,10 @@ public class Equilibrio {
 
     public int getElementValue(TipoElemento e){
         return elementi.indexOf(new Elemento(e, nElementi-1));
+    }
+
+    public TipoElemento[] getTipiDisponibili(){
+        return Arrays.copyOf(TipoElemento.values(), Config.getNumElementi());
     }
 
     public void printCarino(){

@@ -26,8 +26,7 @@ public class Main {
                         switch(scelta) {
                             //scegli o modifica i nomi dei giocatori
                             case 1:
-                                Scontro scontro = new Scontro();
-                                scontro.SceltaNome();
+
                                 break;
 
                             //comincia lo scontro

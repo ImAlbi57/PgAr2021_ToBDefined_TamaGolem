@@ -2,7 +2,10 @@ package it.unibs.arnaldo.tamagolem;
 
 public class TestMain {
     public static void main(String[] args) {
-        System.out.println("Forse ho creato il progetto");
+        /*Scontro sc = new Scontro("Pippo", "Franco", 5);
+        System.out.println(sc.prelevaPietre(TipoElemento.VELENO, 2));*/
+
+        /*System.out.println("Forse ho creato il progetto");
         Equilibrio eq = new Equilibrio(5);
 
         //System.out.println(eq.getMultiplier(new Elemento("ACQUA"), new Elemento("ACQUA")));
