@@ -34,31 +34,6 @@ public class Main {
                     partita = inputScontro();
                     partita.gioca();
                     blocca = false;
-                    /*
-                    do {
-                        //assegno alla variabile il valore inserito da tastiera dopo aver mostrato il menu di scelta
-                        scelta = InputDati.leggiInteroNonNegativo(TamaMessage.MENU2);
-
-                        switch(scelta) {
-                            //scegli o modifica i nomi dei giocatori
-                            case 1:
-                                partita = inputScontro();
-                                partita.gioca();
-                                blocca = false;
-                                break;
-
-                            //comincia lo scontro
-                            case 2: break;
-
-                            //abbandona la partita
-                            case 3: break;
-
-                            //messaggio di errore per altri valori inseriti
-                            default: System.out.println("Scelta non valida");
-                        }
-
-
-                    }while(scelta!=3);*/
                     break;
                 //inizia una nuova partita con gli stessi dati
                 case 2:
