@@ -4,6 +4,10 @@ import it.unibs.fp.mylib.InputDati;
 
 import java.util.Scanner;
 
+/***
+ * Classe main
+ * @author ToBdefined
+ */
 public class Main {
 
     /***

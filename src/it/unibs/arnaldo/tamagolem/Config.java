@@ -1,7 +1,9 @@
 package it.unibs.arnaldo.tamagolem;
 
-import java.util.ArrayList;
-
+/***
+ * Classe per configurare tutte le costanti del gioco
+ * @author ToBdefined
+ */
 public class Config {
     public static final int INTERVALLO_3_5 = 0;
     public static final int INTERVALLO_6_8 = 1;

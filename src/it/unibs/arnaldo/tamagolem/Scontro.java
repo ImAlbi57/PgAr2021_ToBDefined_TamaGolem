@@ -12,14 +12,12 @@ import java.util.Random;
  */
 public class Scontro {
 
-    //costruttori
+    //attributi
     private Giocatore player1;
     private Giocatore player2;
     private TamaGolem tamaP1;
     private TamaGolem tamaP2;
     private Equilibrio eq;
-
-    //hashmap
     private HashMap<TipoElemento, Integer> magazzino;
 
     /*[DEBUG ONLY]*/
@@ -50,14 +48,29 @@ public class Scontro {
         this.magazzino = creaMagazzino();
     }
 
+
+    //GETTERS
+    /***
+     * Getter di player1
+     * @return player1
+     */
     public Giocatore getPlayer1() {
         return player1;
     }
 
+    /***
+     * Getter di player2
+     * @return player2
+     */
     public Giocatore getPlayer2() {
         return player2;
     }
 
+
+    /***
+     * Metodo per creare la scorta comune di pietre
+     * @return magazzino, ossia la scorta comune ai due giocatori per scegliere le pietre
+     */
     private HashMap<TipoElemento, Integer> creaMagazzino(){
         HashMap<TipoElemento, Integer> magazzino = new HashMap<>();
         TipoElemento[] possibili = eq.getTipiDisponibili();
@@ -69,10 +82,23 @@ public class Scontro {
         return magazzino;
     }
 
+
+    /***
+     * Metodo per
+     * @param elem
+     * @return
+     */
     public int getNumeroPietre(TipoElemento elem){
         return magazzino.get(elem);
     }
 
+
+    /***
+     * Metodo per prendere una pietra dalla scorta comune
+     * @param elem
+     * @param nPietre
+     * @return numero pietre rimaste
+     */
     public int prelevaPietre(TipoElemento elem, int nPietre) {
         if (!magazzino.containsKey(elem))
             return -1;
@@ -91,6 +117,10 @@ public class Scontro {
         gioca();
     }
 
+
+    /***
+     * Metodo per iniziare la battaglia
+     */
     public void gioca(){
 
         System.out.println("\n~ FASE DI INPUT DEI TAMAGOLEM ~\n");
@@ -152,6 +182,21 @@ public class Scontro {
 
     }
 
+
+    /***
+     * Metodo per visualizzare in output chi ha vinto
+     * @param vittoria, cioe il numero che indica quale dei due giocatori ha vinto
+     */
+    private void stampaVittoria(int vittoria) {
+        System.out.println((vittoria==1 ? player1 : player2) + " HA VINTO!");
+    }
+
+
+    /***
+     * Metodo per evocare un tamagolem dalla propria squadra
+     * @param player
+     * @return null se non sono rimasti tamagolem oppure il tamagolem scelto
+     */
     private TamaGolem evoca(Giocatore player) {
         //Seleziono un tamagolem
         TamaGolem tama = player.selectTamagolem();
@@ -168,6 +213,11 @@ public class Scontro {
         return tama;
     }
 
+
+    /***
+     * Metodo per dare le pietre elementali al tuo tamagolem
+     * @return gli elementi delle pietre scelte
+     */
     private ArrayList<TipoElemento> inputPietre() {
         int qtScelte = 0;
         ArrayList<TipoElemento> scelte = new ArrayList<>();
@@ -197,6 +247,13 @@ public class Scontro {
         return scelte;
     }
 
+
+    /***
+     * Metodo per gestire il calcolo dei danni durante lo scontro
+     * @param subente,  cioe il tamagolem che sta subendo il danno
+     * @param potenza, cioe il valore dell'interazione tra l'elemento forte e quello debole
+     * @return null se il tamagolem resta senza vita oppure il tamagolem con la vita rimanente
+     */
     private TamaGolem gestisciDanni(TamaGolem subente, int potenza) {
         subente.setVita(subente.getVita()- potenza);
 
@@ -214,12 +271,22 @@ public class Scontro {
         return subente;
     }
 
+
+    /***
+     * Metodo per restituire le pietre tenute dal tamagolem sconfitto
+     * @param pietre
+     */
     private void riponiPietre(ArrayList<TipoElemento> pietre) {
         for (TipoElemento pietra : pietre) {
             magazzino.replace(pietra, magazzino.get(pietra)+1);
         }
     }
 
+
+    /***
+     * Metodo per verificare se e chi ha vinto
+     * @return 2 se ha vinto il player2, 1 se ha vinto il player 1 oppure 0 se non ce ancora un vincitore
+     */
     private int checkVittoria() {
         //Controllo se hanno almeno un tamagolem vivo
         boolean p1 = player1.hasTamagolem();
@@ -233,9 +300,5 @@ public class Scontro {
             return 1;
 
         return 0;
-    }
-
-    private void stampaVittoria(int vittoria) {
-        System.out.println((vittoria==1 ? player1 : player2) + " HA VINTO!");
     }
 }

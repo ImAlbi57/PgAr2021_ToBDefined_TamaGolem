@@ -1,6 +1,5 @@
 package it.unibs.arnaldo.tamagolem;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -22,7 +21,7 @@ public class Equilibrio {
     private void initElementi(int num){
         TipoElemento[] possibili = TipoElemento.values();
         for(int i=0; i<num; i++){
-            Elemento e = new Elemento(possibili[i], num-1);
+            Elemento e = new Elemento(possibili[i]);
             elementi.add(e);
         }
     }
@@ -119,7 +118,7 @@ public class Equilibrio {
     }
 
     public int getElementValue(TipoElemento e){
-        return elementi.indexOf(new Elemento(e, nElementi-1));
+        return elementi.indexOf(new Elemento(e));
     }
 
     public TipoElemento[] getTipiDisponibili(){
