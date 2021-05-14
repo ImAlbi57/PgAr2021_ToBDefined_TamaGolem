@@ -2,7 +2,16 @@ package it.unibs.arnaldo.tamagolem;
 
 import it.unibs.fp.mylib.InputDati;
 
+/***
+ * Classe principale main
+ * @author ToBdefined
+ */
 public class Main {
+
+    /***
+     *Metodo main
+     * @param args
+     */
     public static void main(String[] args) {
         //richiamo il messaggio di benvenuto
         System.out.println(TamaMessage.getSaluto());

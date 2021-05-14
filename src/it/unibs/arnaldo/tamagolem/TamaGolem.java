@@ -2,20 +2,32 @@ package it.unibs.arnaldo.tamagolem;
 
 import java.util.ArrayList;
 
+/***
+ * Classe per inizializzare il costruttore tamagolem
+ */
 public class TamaGolem {
     private String nome;
     private ArrayList<TipoElemento> pietre;
     private boolean usato;
     private int vita;
 
-    public TamaGolem(String nome) {
-        this.usato = false;
-        this.nome = nome;
-        pietre = new ArrayList<>();
+
+    //GETTERS
+    /***
+     * Getter di pietre
+     * @return pietre
+     */
+    public ArrayList<TipoElemento> getPietre() {
+        return pietre;
     }
 
-    public boolean isUsato(){
-        return this.usato;
+    /***
+     * Metodo per ottenere una pietra tramite l'indice
+     * @param index, cioe l'indice della pietra
+     * @return pietre.get(index), cioe la pietra presente in quella posizione
+     */
+    public TipoElemento getPietra(int index){
+        return pietre.get(index);
     }
 
     public String getNome() {
@@ -38,12 +50,15 @@ public class TamaGolem {
         this.pietre = new ArrayList<>(pietre);
     }
 
-    public ArrayList<TipoElemento> getPietre() {
-        return pietre;
+
+    public TamaGolem(String nome) {
+        this.usato = false;
+        this.nome = nome;
+        pietre = new ArrayList<>();
     }
 
-    public TipoElemento getPietra(int index){
-        return pietre.get(index);
+    public boolean isUsato(){
+        return this.usato;
     }
 
     public String toString(){

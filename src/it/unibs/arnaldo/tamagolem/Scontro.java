@@ -6,13 +6,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+/***
+ *Classe per impostare le dinamiche dello scontro
+ * @author ToBdefined
+ */
 public class Scontro {
 
+    //costruttori
     private Giocatore player1;
     private Giocatore player2;
     private TamaGolem tamaP1;
     private TamaGolem tamaP2;
     private Equilibrio eq;
+
+    //hashmap
     private HashMap<TipoElemento, Integer> magazzino;
 
     /*[DEBUG ONLY]*/
@@ -26,6 +33,13 @@ public class Scontro {
         this.magazzino = creaMagazzino();
     }
 
+
+    /***
+     * Costruttore Scontro
+     * @param player1, cioe il nome del primo giocatore
+     * @param player2, cioe il nome del seocndo giocatore
+     * @param nElementi, cioe il numero di elementi presenti nell'equilibrio del mondo
+     */
     public Scontro(String player1, String player2, int nElementi) {
         Config.init(nElementi);
 

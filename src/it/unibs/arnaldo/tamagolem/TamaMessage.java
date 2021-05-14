@@ -1,5 +1,9 @@
 package it.unibs.arnaldo.tamagolem;
 
+/***
+ * Classe per contenere gli output stringa costanti per tutto il programma
+ * @author ToBdefined
+ */
 public class TamaMessage {
 
     //output iniziale del programma
@@ -33,18 +37,35 @@ public class TamaMessage {
 
 
     //GETTERS
+
+    /***
+     * Getter della stringa visualizzata per inserire il nome del giocatore
+     * @return MESS_NOME
+     */
     public static String getMessNome() {
         return MESS_NOME;
     }
 
+    /***
+     * Getter della stringa visualizzata all'inizio del programma
+     * @return SALUTO
+     */
     public static String getSaluto() {
         return SALUTO;
     }
 
+    /***
+     * Getter della stringa visualizzata come primo menu
+     * @return MENU
+     */
     public static String getMenu() {
         return MENU;
     }
 
+    /***
+     * Getter della stringa visualizzata come secondo menu
+     * @return MENU2
+     */
     public static String getMenu2() {
         return MENU2;
     }
