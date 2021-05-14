@@ -10,6 +10,7 @@ public class TestMain {
         System.out.println(eq.checkEquilibrio());
         eq.printPesiElem();
 
+
         /*
         //Scontro sc = new Scontro("nome1","nome2", 5);
 
