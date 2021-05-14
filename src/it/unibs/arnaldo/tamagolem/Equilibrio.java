@@ -23,7 +23,6 @@ public class Equilibrio {
         TipoElemento[] possibili = TipoElemento.values();
         for(int i=0; i<num; i++){
             Elemento e = new Elemento(possibili[i], num-1);
-            e.setSumMax(nElementi-1);
             elementi.add(e);
         }
     }
@@ -87,7 +86,6 @@ public class Equilibrio {
         int peso;
         do {
             peso = rand.nextInt(maxRand) + 1;
-            //System.out.println(elementi.get(posForte).getSumAct() + " " + peso);
         }while (elementi.get(posForte).getSumAct() - peso == 0 ||
                 elementi.get(posDebole).getSumAct() + peso == 0
         );

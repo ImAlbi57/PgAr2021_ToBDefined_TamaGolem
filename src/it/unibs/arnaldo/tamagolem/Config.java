@@ -2,20 +2,15 @@ package it.unibs.arnaldo.tamagolem;
 
 import java.util.ArrayList;
 
-/***
- * Classe per configurare tutte le costanti ad ogni partita
- * @author ToBdefined
- */
 public class Config {
-
-    //inizializzazione arraylist della scorta di pietre
-    private static ArrayList<TipoElemento> magazzino;
-
-    //variabili
+    public static final int INTERVALLO_3_5 = 0;
+    public static final int INTERVALLO_6_8 = 1;
+    public static final int INTERVALLO_9_10 = 2;
     private static int NUM_ELEMENTI;
     private static int NUM_PIETRE;
     private static int NUM_GOLEM;
     private static int MAX_POTENZA;
+    private static int[] POTENZA_PER_INTERVALLO = {4,5,6};
 
     /***
      * Metodo per inizializzare tutte le costanti del gioco inserendo il numero di elementi
@@ -26,7 +21,8 @@ public class Config {
         NUM_ELEMENTI = numElementi;
         NUM_PIETRE =  (int) (Math.ceil( (double) (NUM_ELEMENTI + 1) / 3) + 1);
         NUM_GOLEM = (int) Math.ceil( (double) (NUM_ELEMENTI-1)*(NUM_ELEMENTI-2)/(2*NUM_PIETRE));
-        MAX_POTENZA = numElementi-1;
+        int intervallo = ((NUM_ELEMENTI < 6) ? INTERVALLO_3_5 : ((NUM_ELEMENTI < 9) ? INTERVALLO_6_8 : INTERVALLO_9_10));
+        MAX_POTENZA = POTENZA_PER_INTERVALLO[intervallo];
     }
 
     //Getters

@@ -8,9 +8,7 @@ public class Elemento {
 
     //variabili
     private TipoElemento tipo;
-    private int sumMax;
     private int sumAct;
-    private int nArchiRim;
 
 
     //GETTERS
@@ -30,23 +28,8 @@ public class Elemento {
         return sumAct;
     }
 
-    /***
-     *
-     * @return
-     */
-    public int getSumMax() {
-        return sumMax;
-    }
-
 
     //SETTERS
-    /***
-     *
-     * @param sumMax
-     */
-    public void setSumMax(int sumMax) {
-        this.sumMax = sumMax;
-    }
 
 
     /***
@@ -57,7 +40,6 @@ public class Elemento {
     public Elemento(TipoElemento tipo, int nArchiTot){
         this.tipo = tipo;
         this.sumAct = 0;
-        this.nArchiRim = nArchiTot;
     }
 
 
@@ -67,7 +49,6 @@ public class Elemento {
      */
     public void addValEnt(int val) {
         this.sumAct += val;
-        nArchiRim--;
     }
 
 
@@ -77,7 +58,6 @@ public class Elemento {
      */
     public void addValUsc(int val) {
         this.sumAct -= val;
-        nArchiRim--;
     }
 
 

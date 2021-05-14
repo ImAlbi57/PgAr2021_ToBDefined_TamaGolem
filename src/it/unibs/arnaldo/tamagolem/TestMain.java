@@ -5,9 +5,15 @@ import java.util.ArrayList;
 
 public class TestMain {
     public static void main(String[] args) {
+        Config.init(5);
+        Equilibrio eq = new Equilibrio(5);
+        System.out.println(eq.checkEquilibrio());
+        eq.printPesiElem();
+
+        /*
         //Scontro sc = new Scontro("nome1","nome2", 5);
 
-        /*NON SAREBBERO DA FARE MA E' PER VELOCIZZARE I TEST*/
+        //NON SAREBBERO DA FARE MA E' PER VELOCIZZARE I TEST
         ArrayList<TamaGolem> tama1 = new ArrayList<>();
         tama1.add(new TamaGolem("Giuseppe"));
         tama1.add(new TamaGolem("Giacomo"));
@@ -19,9 +25,12 @@ public class TestMain {
         Giocatore g2 = new Giocatore("Franco", tama2);
 
         Scontro sc = new Scontro(g1, g2, 5);
-        /*NON SAREBBERO DA FARE MA E' PER VELOCIZZARE I TEST*/
+        //NON SAREBBERO DA FARE MA E' PER VELOCIZZARE I TEST
 
         sc.gioca();
+        */
+
+
 
         /*System.out.println("Forse ho creato il progetto");
         Equilibrio eq = new Equilibrio(5);

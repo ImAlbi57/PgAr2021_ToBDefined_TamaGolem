@@ -2,10 +2,8 @@ package it.unibs.arnaldo.tamagolem;
 
 import it.unibs.fp.mylib.InputDati;
 
-/***
- * Classe principale main
- * @author ToBdefined
- */
+import java.util.Scanner;
+
 public class Main {
 
     /***
@@ -16,9 +14,9 @@ public class Main {
         //richiamo il messaggio di benvenuto
         System.out.println(TamaMessage.getSaluto());
 
-
         //inizializzo le variabili
         int scelta;
+        Scontro partita;
 
         //comincio il ciclo do while con lo switch
         do {
@@ -35,7 +33,8 @@ public class Main {
                         switch(scelta) {
                             //scegli o modifica i nomi dei giocatori
                             case 1:
-
+                                partita = inputScontro();
+                                partita.gioca();
                                 break;
 
                             //comincia lo scontro
@@ -59,5 +58,15 @@ public class Main {
             }
 
         }while(scelta != 0);
+    }
+
+    private static Scontro inputScontro(){
+        String nome1 = InputDati.leggiStringa(TamaMessage.getMessNome());
+        String nome2 = InputDati.leggiStringa(TamaMessage.getMessNome());
+        while(nome1.equals(nome2)){
+            nome2 = InputDati.leggiStringa(TamaMessage.getMessNome());
+        }
+        int nElementi = InputDati.leggiIntero("Inserisci il numero di elementi con la quale vuoi giocare [3-10]: ",3,10);
+        return new Scontro(nome1, nome2, nElementi);
     }
 }
