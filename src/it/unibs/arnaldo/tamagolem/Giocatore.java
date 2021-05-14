@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 public class Giocatore {
 
+    public static final String INSERISCI_NOME_TAMA = "Inserisci il nome del Tamagolem: ";
+    public static final String SCELTA = "Scelta: ";
+    public static final String INSERIMENTO_TAMA = "\n➢ Inserimento dei TamaGolem di ";
+
     private String nome;
     private ArrayList<TamaGolem> tamagolems;
 
@@ -45,9 +49,9 @@ public class Giocatore {
     }
 
     public void inputTama(){
-        System.out.println("\n➢ Inserimento dei TamaGolem di " + this.nome);
+        System.out.println(INSERIMENTO_TAMA + this.nome);
         for (int i = 0; i < Config.getNumGolem(); i++) {
-            String nome = InputDati.leggiStringaNonVuota("Inserisci il nome del Tamagolem: ").toUpperCase();
+            String nome = InputDati.leggiStringaNonVuota(INSERISCI_NOME_TAMA).toUpperCase();
             tamagolems.add(new TamaGolem(nome));
         }
     }
@@ -64,7 +68,7 @@ public class Giocatore {
         while(!finito){
             System.out.println("\n➢ " + this.nome + " scegli il tamagolem da evocare");
             stampaGolem();
-            posScelta = InputDati.leggiIntero("Scelta: ", 0,tamagolems.size()-1);
+            posScelta = InputDati.leggiIntero(SCELTA, 0,tamagolems.size()-1);
 
             if(!tamagolems.get(posScelta).isUsato())
                 finito = true;

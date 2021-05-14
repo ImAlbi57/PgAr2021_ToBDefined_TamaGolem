@@ -12,6 +12,16 @@ import java.util.Random;
  */
 public class Scontro {
 
+    public static final String NO_EFFECT = "Non ha effetto";
+    public static final String SCEGLI_PIETRE = "\n➢ Scegli le pietre da dare al tuo tamagolem";
+    public static final String SCELTA = "Scelta: ";
+    public static final String NON_DISPONIBILE = "Elemento non disponibile! \nScelta: ";
+    public static final String QUANTITA = "\nQuante ne vuoi? ";
+    public static final String ERRORE = "Il numero selezionato supera il numero massimo di pietre per il tuo Tamagolem";
+    public static final String ERRORE_DI_SELEZIONE = ERRORE;
+    public static final String VITTORIA = " HA VINTO!";
+    public static final String RIVELAZIONE_EQUILIBRIO = "\n\nRIVELAZIONE DELL'EQUILIBRIO";
+
     //attributi
     private Giocatore player1;
     private Giocatore player2;
@@ -160,7 +170,7 @@ public class Scontro {
             //Controllo le potenze
             //Se è uguale a 0, l'interazione è nulla
             if(potenza == 0)
-                System.out.println("Non ha effetto");
+                System.out.println(NO_EFFECT);
 
             //Se è maggiore di 0, allora p1 prevale su p2, p2 subisce danno, altrimenti viceversa
             if(potenza>0)
@@ -209,7 +219,7 @@ public class Scontro {
         int qtScelte = 0;
         ArrayList<TipoElemento> scelte = new ArrayList<>();
 
-        System.out.println("\n➢ Scegli le pietre da dare al tuo tamagolem");
+        System.out.println(SCEGLI_PIETRE);
         TipoElemento[] possibili = eq.getTipiDisponibili();
 
         while(qtScelte < Config.getNumPietre()){
@@ -218,10 +228,10 @@ public class Scontro {
             for(int i = 0; i < possibili.length; i++){
                 System.out.println("("+i+")" + possibili[i] + ": " + getNumeroPietre(possibili[i]));
             }
-            int tipo = InputDati.leggiIntero("Scelta: ",0,possibili.length-1);
+            int tipo = InputDati.leggiIntero(SCELTA,0,possibili.length-1);
             while(getNumeroPietre(possibili[tipo]) == 0)
-                tipo = InputDati.leggiIntero("Elemento non disponibile! \nScelta: ",0,possibili.length-1);
-            int qt = InputDati.leggiIntero("\nQuante ne vuoi? ", 0, getNumeroPietre(possibili[tipo]));
+                tipo = InputDati.leggiIntero(NON_DISPONIBILE,0,possibili.length-1);
+            int qt = InputDati.leggiIntero(QUANTITA, 0, getNumeroPietre(possibili[tipo]));
 
             System.out.println();
 
@@ -234,7 +244,7 @@ public class Scontro {
                 }
             }
             else
-                System.out.println("Il numero selezionato supera il numero massimo di pietre per il tuo Tamagolem");
+                System.out.println(ERRORE_DI_SELEZIONE);
         }
         return scelte;
     }
@@ -300,10 +310,11 @@ public class Scontro {
      * @param vittoria, cioe il numero che indica quale dei due giocatori ha vinto
      */
     private void stampaVittoria(int vittoria) {
-        System.out.println((vittoria==1 ? player1 : player2) + " HA VINTO!");
-        System.out.println("\n\nRIVELAZIONE DELL'EQUILIBRIO");
+        System.out.println((vittoria==1 ? player1 : player2) + VITTORIA);
+        System.out.println(RIVELAZIONE_EQUILIBRIO);
         eq.printPesiElem();
         System.out.println();
         eq.printCarino();
+
     }
 }
