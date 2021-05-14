@@ -5,14 +5,14 @@ package it.unibs.arnaldo.tamagolem;
  * @author ToBdefined
  */
 public enum TipoElemento {
-    ARIA,       //🌪️
+    VENTO,      //🌪️
     FUOCO,      //🔥
-    ROCCIA,     //⛰
+    PIETRA,     //⛰
     ERBA,       //🌿
     ACQUA,      //🌊
     BUIO,       //🌫️
     DRAGO,      //🐲
-    ELETTRO,    //🌩
+    TUONO,      //🌩
     RADIOATTIVO,//☢
     GHIACCIO    //🧊
 }
