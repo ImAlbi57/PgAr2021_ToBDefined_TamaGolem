@@ -57,10 +57,8 @@ public class Main {
         String nome1 = InputDati.leggiStringa(TamaMessage.MESS_NOME).toUpperCase();
         String nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME).toUpperCase();
         while(nome1.equals(nome2)){
-
-            System.out.println("\nI giocatori non possono avere lo stesso nome\n");
-            nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME).toUpperCase();
-
+            System.out.println("I nomi corrispondono! Inserisci un nome diverso");
+            nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME);
         }
         int nElementi = InputDati.leggiIntero(TamaMessage.NUMERO_ELEMENTI,3,10);
         return new Scontro(nome1, nome2, nElementi);

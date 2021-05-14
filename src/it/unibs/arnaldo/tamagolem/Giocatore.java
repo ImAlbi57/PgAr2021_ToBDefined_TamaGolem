@@ -62,7 +62,7 @@ public class Giocatore {
         boolean finito = false;
         //Stampa i tamagolem disponibili
         while(!finito){
-            System.out.println("\n➢" + this.nome + " scegli il tamagolem da evocare");
+            System.out.println("\n➢ " + this.nome + " scegli il tamagolem da evocare");
             stampaGolem();
             posScelta = InputDati.leggiIntero("Scelta: ", 0,tamagolems.size()-1);
 
