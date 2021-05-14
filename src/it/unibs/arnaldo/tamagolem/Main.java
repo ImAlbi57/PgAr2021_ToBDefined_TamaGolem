@@ -12,29 +12,31 @@ public class Main {
      */
     public static void main(String[] args) {
         //richiamo il messaggio di benvenuto
-        System.out.println(TamaMessage.getSaluto());
+        System.out.println(TamaMessage.SALUTO);
 
         //inizializzo le variabili
         int scelta;
-        Scontro partita;
+        boolean blocca = true;
+        Scontro partita = null;
 
         //comincio il ciclo do while con lo switch
         do {
             //assegno alla variabile il valore inserito da tastiera dopo aver mostrato il menu di scelta
-            scelta = InputDati.leggiInteroNonNegativo(TamaMessage.getMenu());
+            scelta = InputDati.leggiInteroNonNegativo(TamaMessage.MENU);
 
             switch(scelta) {
                 //inizia una nuova partita
                 case 1:
                     do {
                         //assegno alla variabile il valore inserito da tastiera dopo aver mostrato il menu di scelta
-                        scelta = InputDati.leggiInteroNonNegativo(TamaMessage.getMenu2());
+                        scelta = InputDati.leggiInteroNonNegativo(TamaMessage.MENU2);
 
                         switch(scelta) {
                             //scegli o modifica i nomi dei giocatori
                             case 1:
                                 partita = inputScontro();
                                 partita.gioca();
+                                blocca = false;
                                 break;
 
                             //comincia lo scontro
@@ -49,8 +51,16 @@ public class Main {
 
 
                     }while(scelta!=3);
-
-                    //termina il programma
+                    break;
+                //inizia una nuova partita con gli stessi dati
+                case 2:
+                    if(!blocca){
+                        partita.rivincita();
+                    }
+                    else
+                        System.out.println("Non puoi usare questa opzione finché non giochi almeno una volta");
+                    break;
+                //termina il programma
                 case 0: break;
 
                 //messaggio di errore per altri valori inseriti
@@ -61,12 +71,12 @@ public class Main {
     }
 
     private static Scontro inputScontro(){
-        String nome1 = InputDati.leggiStringa(TamaMessage.getMessNome());
-        String nome2 = InputDati.leggiStringa(TamaMessage.getMessNome());
+        String nome1 = InputDati.leggiStringa(TamaMessage.MESS_NOME);
+        String nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME);
         while(nome1.equals(nome2)){
-            nome2 = InputDati.leggiStringa(TamaMessage.getMessNome());
+            nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME);
         }
-        int nElementi = InputDati.leggiIntero("Inserisci il numero di elementi con la quale vuoi giocare [3-10]: ",3,10);
+        int nElementi = InputDati.leggiIntero(TamaMessage.NUMERO_ELEMENTI,3,10);
         return new Scontro(nome1, nome2, nElementi);
     }
 }

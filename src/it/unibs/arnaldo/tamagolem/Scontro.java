@@ -50,6 +50,14 @@ public class Scontro {
         this.magazzino = creaMagazzino();
     }
 
+    public Giocatore getPlayer1() {
+        return player1;
+    }
+
+    public Giocatore getPlayer2() {
+        return player2;
+    }
+
     private HashMap<TipoElemento, Integer> creaMagazzino(){
         HashMap<TipoElemento, Integer> magazzino = new HashMap<>();
         TipoElemento[] possibili = eq.getTipiDisponibili();
@@ -76,7 +84,17 @@ public class Scontro {
         return 0;
     }
 
+    public void rivincita() {
+        player1.resetModifiche();
+        player2.resetModifiche();
+        this.magazzino = creaMagazzino();
+        gioca();
+    }
+
     public void gioca(){
+
+        System.out.println("\n~ FASE DI INPUT DEI TAMAGOLEM ~\n");
+
         //Fase preparatoria, input dei tamagochi
         if(player1.getTamagolems().size() == 0)
             player1.inputTama();
@@ -132,10 +150,6 @@ public class Scontro {
         stampaVittoria(vittoria);
 
 
-    }
-
-    private void stampaVittoria(int vittoria) {
-        System.out.println((vittoria==1 ? player1 : player2) + " HA VINTO!");
     }
 
     private TamaGolem evoca(Giocatore player) {
@@ -221,40 +235,7 @@ public class Scontro {
         return 0;
     }
 
-    public Giocatore getPlayer1() {
-        return player1;
+    private void stampaVittoria(int vittoria) {
+        System.out.println((vittoria==1 ? player1 : player2) + " HA VINTO!");
     }
-
-    public Giocatore getPlayer2() {
-        return player2;
-    }
-
-    /*
-    //////////////////aggiunte per testare l input dei nomi
-
-    private String nome1;
-    private String nome2;
-    private Giocatore giocatore1;
-    private Giocatore giocatore2;
-    //costruttore random
-    public Scontro() {
-
-    }
-
-    //metodo per impedire che i due nomi corrispondano
-    public void SceltaNome() {
-        do{
-            nome1 = InputDati.leggiStringa("Inserisci il nome del giocatore1: ").toUpperCase().trim();
-            nome2 = InputDati.leggiStringa("Inserisci il nome del giocatore2: ").toUpperCase().trim();
-
-            if(nome1.equals(nome2)) {
-                System.out.println("\r\nI nomi dei due giocatori non possono essere uguali\r\n");
-            }
-        }while (nome1.equals(nome2));
-
-        giocatore1 = new Giocatore(nome1);
-        giocatore2 = new Giocatore(nome2);
-    }
-    String giocatore1 = InputDati.leggiStringa("Inserisci il nome del giocatore");
-    String giocatore2 = InputDati.leggiStringa("Inserisci il nome del giocatore");*/
 }

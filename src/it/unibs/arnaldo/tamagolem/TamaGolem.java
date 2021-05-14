@@ -11,6 +11,11 @@ public class TamaGolem {
     private boolean usato;
     private int vita;
 
+    public TamaGolem(String nome) {
+        this.usato = false;
+        this.nome = nome;
+        pietre = new ArrayList<>();
+    }
 
     //GETTERS
     /***
@@ -48,13 +53,6 @@ public class TamaGolem {
 
     public void setPietre(ArrayList<TipoElemento> pietre){
         this.pietre = new ArrayList<>(pietre);
-    }
-
-
-    public TamaGolem(String nome) {
-        this.usato = false;
-        this.nome = nome;
-        pietre = new ArrayList<>();
     }
 
     public boolean isUsato(){

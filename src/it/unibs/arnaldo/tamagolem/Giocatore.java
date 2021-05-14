@@ -25,6 +25,16 @@ public class Giocatore {
         this.tamagolems = new ArrayList<>();
     }
 
+    //GETTERS
+    public String getNome() {
+        return nome;
+    }
+
+    public ArrayList<TamaGolem> getTamagolems() {
+        return tamagolems;
+    }
+
+
     public boolean hasTamagolem() {
         for(TamaGolem t : tamagolems){
             if(!t.isUsato()){
@@ -35,21 +45,12 @@ public class Giocatore {
     }
 
     public void inputTama(){
+        System.out.println("\n➢ Inserimento dei TamaGolem di " + this.nome);
         for (int i = 0; i < Config.getNumGolem(); i++) {
             String nome = InputDati.leggiStringaNonVuota("Inserisci il nome del Tamagolem: ");
             tamagolems.add(new TamaGolem(nome));
         }
     }
-
-    //GETTERS
-    public String getNome() {
-        return nome;
-    }
-
-    public ArrayList<TamaGolem> getTamagolems() {
-        return tamagolems;
-    }
-
 
     public TamaGolem selectTamagolem() {
         //Controllo se sono presenti tamagolem
@@ -75,6 +76,14 @@ public class Giocatore {
         //Ritorno
         return tamagolems.get(posScelta);
     }
+
+    public void resetModifiche(){
+        for(TamaGolem t : tamagolems){
+            t.setUsato(false);
+            t.setPietre(new ArrayList<>());
+        }
+    }
+
 
     private void stampaGolem(){
         for (int i = 0; i <tamagolems.size(); i++) {
