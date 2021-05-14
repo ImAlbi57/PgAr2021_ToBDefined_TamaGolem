@@ -54,6 +54,10 @@ public class Main {
         }while(scelta != 0);
     }
 
+    /***
+     * Metodo per inserire i nomi dei giocatori e selezionare il numero di elementi
+     * @return scontro
+     */
     private static Scontro inputScontro(){
         String nome1 = InputDati.leggiStringa(TamaMessage.MESS_NOME).toUpperCase();
         String nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME).toUpperCase();

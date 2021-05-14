@@ -32,8 +32,11 @@ public class TamaMessage {
             + "\r\n~~~~~~~~~~~~~~~~~~~~\r\n"
             + "\r\nScelta: ";
 
+
     //output per indicare all'utente che dato sta per inserire
     public static final String MESS_NOME = "INSERISCI IL NOME DEL GIOCATORE: ";
+
+
     //Output per la selezione del numero di elementi
     public static final String NUMERO_ELEMENTI = ""
             + "Inserisci il numero di elementi con la quale vuoi giocare:\r\n"
@@ -42,10 +45,16 @@ public class TamaMessage {
             + "➢ Difficile [9-10]\r\n"
             + "~~~~~~~~~~~~~~~~~~~~\r\n"
             + "Scelta [3-10]: ";
+
+
     //Errore che avviene quando si chiede la rivincita senza aver giocato
     public static final String ERR_RIVINCITA = "Non puoi usare questa opzione finché non giochi almeno una volta";
+
+
     //Errore che si ottiene selezionando un numero non presente nel menù
     public static final String ERR_SCELTA = "Scelta non valida";
+
+
     //Errore che si ottiene inserendo i 2 nomi uguali
     public static final String ERR_NOMI_UGUALI = "I nomi corrispondono! Inserisci un nome diverso";
 }
