@@ -31,6 +31,10 @@ public class Main {
             switch(scelta) {
                 //inizia una nuova partita
                 case 1:
+                    partita = inputScontro();
+                    partita.gioca();
+                    blocca = false;
+                    /*
                     do {
                         //assegno alla variabile il valore inserito da tastiera dopo aver mostrato il menu di scelta
                         scelta = InputDati.leggiInteroNonNegativo(TamaMessage.MENU2);
@@ -54,7 +58,7 @@ public class Main {
                         }
 
 
-                    }while(scelta!=3);
+                    }while(scelta!=3);*/
                     break;
                 //inizia una nuova partita con gli stessi dati
                 case 2:

@@ -37,7 +37,7 @@ public class Giocatore {
 
     public boolean hasTamagolem() {
         for(TamaGolem t : tamagolems){
-            if(!t.isUsato()){
+            if(t.getVita()>0 || !t.isUsato()){
                 return true;
             }
         }
@@ -62,7 +62,7 @@ public class Giocatore {
         boolean finito = false;
         //Stampa i tamagolem disponibili
         while(!finito){
-            System.out.println("Scegli il tamagolem da evocare");
+            System.out.println("\n➢" + this.nome + " scegli il tamagolem da evocare");
             stampaGolem();
             posScelta = InputDati.leggiIntero("Scelta: ", 0,tamagolems.size()-1);
 
@@ -88,7 +88,7 @@ public class Giocatore {
     private void stampaGolem(){
         for (int i = 0; i <tamagolems.size(); i++) {
             if(!tamagolems.get(i).isUsato())
-                System.out.println("("+i+")" + tamagolems.get(i));
+                System.out.println("("+i+") " + tamagolems.get(i));
         }
     }
 

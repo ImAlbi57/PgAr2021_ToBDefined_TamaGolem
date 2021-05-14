@@ -122,9 +122,6 @@ public class Scontro {
      * Metodo per iniziare la battaglia
      */
     public void gioca(){
-
-        System.out.println("\n~ FASE DI INPUT DEI TAMAGOLEM ~\n");
-
         //Fase preparatoria, input dei tamagochi
         if(player1.getTamagolems().size() == 0)
             player1.inputTama();
@@ -182,16 +179,6 @@ public class Scontro {
 
     }
 
-
-    /***
-     * Metodo per visualizzare in output chi ha vinto
-     * @param vittoria, cioe il numero che indica quale dei due giocatori ha vinto
-     */
-    private void stampaVittoria(int vittoria) {
-        System.out.println((vittoria==1 ? player1 : player2) + " HA VINTO!");
-    }
-
-
     /***
      * Metodo per evocare un tamagolem dalla propria squadra
      * @param player
@@ -222,7 +209,7 @@ public class Scontro {
         int qtScelte = 0;
         ArrayList<TipoElemento> scelte = new ArrayList<>();
 
-        System.out.println("Scegli le pietre da dare al tuo tamagolem");
+        System.out.println("\n➢ Scegli le pietre da dare al tuo tamagolem");
         TipoElemento[] possibili = eq.getTipiDisponibili();
 
         while(qtScelte < Config.getNumPietre()){
@@ -231,6 +218,8 @@ public class Scontro {
                 System.out.println("("+i+")" + possibili[i] + ": " + getNumeroPietre(possibili[i]));
             }
             int tipo = InputDati.leggiIntero("Scelta: ",0,possibili.length-1);
+            while(getNumeroPietre(possibili[tipo]) == 0)
+                tipo = InputDati.leggiIntero("Elemento non disponibile! \nScelta: ",0,possibili.length-1);
             int qt = InputDati.leggiIntero("Quante ne vuoi? ", 0, getNumeroPietre(possibili[tipo]));
 
             if(qtScelte+qt <= Config.getNumPietre()){
@@ -300,5 +289,18 @@ public class Scontro {
             return 1;
 
         return 0;
+    }
+
+
+    /***
+     * Metodo per visualizzare in output chi ha vinto
+     * @param vittoria, cioe il numero che indica quale dei due giocatori ha vinto
+     */
+    private void stampaVittoria(int vittoria) {
+        System.out.println((vittoria==1 ? player1 : player2) + " HA VINTO!");
+        System.out.println("\n\nRIVELAZIONE DELL'EQUILIBRIO");
+        eq.printPesiElem();
+        System.out.println();
+        eq.printCarino();
     }
 }
