@@ -7,8 +7,9 @@ import java.util.HashMap;
 import java.util.Random;
 
 /***
- *Classe per impostare le dinamiche dello scontro
- * @author ToBdefined
+ * Classe principale contenente le dinamiche dello scontro
+ * Contiene i 2 giocatori e i 2 Tamagolem attualmente in gioco
+ * @author toBdefined
  */
 public class Scontro {
 
@@ -43,10 +44,10 @@ public class Scontro {
 
 
     /***
-     * Costruttore Scontro
-     * @param player1, cioe il nome del primo giocatore
-     * @param player2, cioe il nome del seocndo giocatore
-     * @param nElementi, cioe il numero di elementi presenti nell'equilibrio del mondo
+     * Costruttore di Scontro
+     * @param player1, cioè il nome del primo giocatore
+     * @param player2, cioè il nome del seocndo giocatore
+     * @param nElementi, cioè il numero di elementi presenti nell'equilibrio del mondo
      */
     public Scontro(String player1, String player2, int nElementi) {
         Config.init(nElementi);
@@ -252,8 +253,8 @@ public class Scontro {
 
     /***
      * Metodo per gestire il calcolo dei danni durante lo scontro
-     * @param subente,  cioe il tamagolem che sta subendo il danno
-     * @param potenza, cioe il valore dell'interazione tra l'elemento forte e quello debole
+     * @param subente,  cioè il tamagolem che sta subendo il danno
+     * @param potenza, cioè il valore dell'interazione tra l'elemento forte e quello debole
      * @return null se il tamagolem resta senza vita oppure il tamagolem con la vita rimanente
      */
     private TamaGolem gestisciDanni(TamaGolem subente, int potenza) {
@@ -307,7 +308,7 @@ public class Scontro {
 
     /***
      * Metodo per visualizzare in output chi ha vinto
-     * @param vittoria, cioe il numero che indica quale dei due giocatori ha vinto
+     * @param vittoria, cioè il numero che indica quale dei due giocatori ha vinto
      */
     private void stampaVittoria(int vittoria) {
         System.out.println((vittoria==1 ? player1 : player2) + VITTORIA);

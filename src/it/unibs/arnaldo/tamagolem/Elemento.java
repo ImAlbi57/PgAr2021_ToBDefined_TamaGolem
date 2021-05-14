@@ -2,7 +2,8 @@ package it.unibs.arnaldo.tamagolem;
 
 /***
  * Classe per gestire gli elementi dell'equilibrio
- * @author ToBdefined
+ * Corrisponde a un nodo che comprende il tipo di elemento e la sommatoria dei pesi entranti e uscenti
+ * @author toBdefined
  */
 public class Elemento {
 
@@ -11,7 +12,7 @@ public class Elemento {
     private int sumAct;
 
     /***
-     *Costruttore di elemento
+     * Costruttore di elemento
      * @param tipo
      */
     public Elemento(TipoElemento tipo){
@@ -22,7 +23,7 @@ public class Elemento {
 
     //GETTERS
     /***
-     *Getter del tipo di elemento
+     * Getter del tipo di elemento
      * @return tipo elemento
      */
     public TipoElemento getTipo() {
@@ -30,7 +31,7 @@ public class Elemento {
     }
 
     /***
-     *Getter della somma attuale dei valori
+     * Getter della somma attuale dei pesi
      * @return somma dei valori
      */
     public int getSumAct() {
@@ -39,7 +40,7 @@ public class Elemento {
 
 
     /***
-     *Metodo per aggiungere un valore entrante
+     * Metodo per aggiungere un peso entrante
      * @param val
      */
     public void addValEnt(int val) {
@@ -48,18 +49,18 @@ public class Elemento {
 
 
     /***
-     *Metodo per aggiungere un valore uscente
+     * Metodo per aggiungere un peso uscente
      * @param val
      */
     public void addValUsc(int val) {
         this.sumAct -= val;
     }
 
-//DA RIVEDERE
+
     /***
-     *Metodo per visualizzare se un oggetto e' stato gia inserito oppure no
+     * Metodo per verificare che 2 oggetti siano uguali
      * @param obj
-     * @return true se un oggetto e' uguale ad un oggetto gia' presente oppure false
+     * @return true se l'oggetto passato corrisponde all'oggetto corrente
      */
     @Override
     public boolean equals(Object obj) {

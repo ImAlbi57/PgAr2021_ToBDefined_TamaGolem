@@ -32,12 +32,10 @@ public class Equilibrio {
                 //Se siamo su un elemento della diagonale (fuoco-fuoco, acqua-acqua) mettiamo a 0
                 if (i == j)
                     adiacenza[i][j] = 0;
-                    //Altrimenti (algoritmo)
                 else {
                     //Controllo se il valore è già stato impostato
                     if (adiacenza[i][j] == 0 && adiacenza[j][i] == 0) {
                         //Se la somma attuale è maggiore di 0, allora è forte
-                        //boolean forte = elementi.get(i).getSumAct() > 0;
                         boolean forte = elementi.get(i).getSumAct() > elementi.get(j).getSumAct();
 
                         if (forte) {

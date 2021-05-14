@@ -11,7 +11,8 @@ import java.util.Scanner;
 public class Main {
 
     /***
-     *Metodo main
+     * Metodo main
+     * @author toBdefined
      * @param args
      */
     public static void main(String[] args) {
@@ -41,13 +42,13 @@ public class Main {
                         partita.rivincita();
                     }
                     else
-                        System.out.println("Non puoi usare questa opzione finché non giochi almeno una volta");
+                        System.out.println(TamaMessage.ERR_RIVINCITA);
                     break;
                 //termina il programma
                 case 0: break;
 
                 //messaggio di errore per altri valori inseriti
-                default: System.out.println("Scelta non valida");
+                default: System.out.println(TamaMessage.ERR_SCELTA);
             }
 
         }while(scelta != 0);
@@ -57,7 +58,7 @@ public class Main {
         String nome1 = InputDati.leggiStringa(TamaMessage.MESS_NOME).toUpperCase();
         String nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME).toUpperCase();
         while(nome1.equals(nome2)){
-            System.out.println("I nomi corrispondono! Inserisci un nome diverso");
+            System.out.println(TamaMessage.ERR_NOMI_UGUALI);
             nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME);
         }
         int nElementi = InputDati.leggiIntero(TamaMessage.NUMERO_ELEMENTI,3,10);

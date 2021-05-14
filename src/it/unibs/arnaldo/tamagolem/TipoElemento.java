@@ -1,8 +1,8 @@
 package it.unibs.arnaldo.tamagolem;
 
 /***
- * Classe enum per definire gli elementi del mondo
- * @author ToBdefined
+ * Classe enum che definisce gli elementi del mondo
+ * @author toBdefined
  */
 public enum TipoElemento {
     VENTO,      //🌪️

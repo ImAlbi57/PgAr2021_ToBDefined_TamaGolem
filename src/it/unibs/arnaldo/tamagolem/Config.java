@@ -1,8 +1,8 @@
 package it.unibs.arnaldo.tamagolem;
 
 /***
- * Classe per configurare tutte le costanti del gioco
- * @author ToBdefined
+ * Classe statica con la configurazione delle costanti del gioco
+ * @author toBdefined
  */
 public class Config {
     public static final int INTERVALLO_3_5 = 0;
@@ -12,11 +12,11 @@ public class Config {
     private static int NUM_PIETRE;
     private static int NUM_GOLEM;
     private static int MAX_POTENZA;
-    private static int[] POTENZA_PER_INTERVALLO = {4,5,6};
+    private static final int[] POTENZA_PER_INTERVALLO = {4,5,6};
 
     /***
      * Metodo per inizializzare tutte le costanti del gioco inserendo il numero di elementi
-     * @param numElementi, cioe il numero di elementi presenti nell'equilibrio del mondo
+     * @param numElementi, cioè il numero di elementi presenti nell'equilibrio del mondo
      */
     //Imposta i valori calcolati dal numero di elementi
     public static void init(int numElementi){
@@ -58,14 +58,5 @@ public class Config {
      */
     public static int getMaxPotenza() {
         return MAX_POTENZA;
-    }
-
-
-    /***
-     * Metodo toString per informare del numero di pietre, elementi e golem presenti in questa partita
-     * @return Stringa con i valori delle costanti di questa partita
-     */
-    public static String toStr() {
-        return Config.getNumElementi() + " " + Config.getNumGolem() + " " + Config.getNumPietre();
     }
 }
