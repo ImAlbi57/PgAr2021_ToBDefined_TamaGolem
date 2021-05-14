@@ -47,7 +47,7 @@ public class Giocatore {
     public void inputTama(){
         System.out.println("\n➢ Inserimento dei TamaGolem di " + this.nome);
         for (int i = 0; i < Config.getNumGolem(); i++) {
-            String nome = InputDati.leggiStringaNonVuota("Inserisci il nome del Tamagolem: ");
+            String nome = InputDati.leggiStringaNonVuota("Inserisci il nome del Tamagolem: ").toUpperCase();
             tamagolems.add(new TamaGolem(nome));
         }
     }

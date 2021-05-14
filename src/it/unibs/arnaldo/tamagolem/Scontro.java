@@ -84,9 +84,9 @@ public class Scontro {
 
 
     /***
-     * Metodo per
+     * Metodo per prendere il numero massimo di pietre disponibili di un certo elemento nella scorta
      * @param elem
-     * @return
+     * @return numero pietre dell' elemento
      */
     public int getNumeroPietre(TipoElemento elem){
         return magazzino.get(elem);
@@ -213,14 +213,17 @@ public class Scontro {
         TipoElemento[] possibili = eq.getTipiDisponibili();
 
         while(qtScelte < Config.getNumPietre()){
-            System.out.println("Pietre possibili: ");
+            int pietre_rimaste = Config.getNumPietre()-qtScelte;
+            System.out.println("Pietre possibili [sceglierne "+ pietre_rimaste +"]: ");
             for(int i = 0; i < possibili.length; i++){
                 System.out.println("("+i+")" + possibili[i] + ": " + getNumeroPietre(possibili[i]));
             }
             int tipo = InputDati.leggiIntero("Scelta: ",0,possibili.length-1);
             while(getNumeroPietre(possibili[tipo]) == 0)
                 tipo = InputDati.leggiIntero("Elemento non disponibile! \nScelta: ",0,possibili.length-1);
-            int qt = InputDati.leggiIntero("Quante ne vuoi? ", 0, getNumeroPietre(possibili[tipo]));
+            int qt = InputDati.leggiIntero("\nQuante ne vuoi? ", 0, getNumeroPietre(possibili[tipo]));
+
+            System.out.println();
 
             if(qtScelte+qt <= Config.getNumPietre()){
                 prelevaPietre(possibili[tipo], qt);
@@ -248,7 +251,7 @@ public class Scontro {
 
         //check morte
         if(subente.getVita() <= 0){
-            System.out.println(subente + " è morto!");
+            System.out.println("➢ " + subente + " è morto!");
             //rimuovo il tamagochi e rimetto nel magazzino le pietre
             riponiPietre(subente.getPietre());
             subente = null;

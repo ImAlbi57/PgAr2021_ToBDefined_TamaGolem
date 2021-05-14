@@ -54,10 +54,13 @@ public class Main {
     }
 
     private static Scontro inputScontro(){
-        String nome1 = InputDati.leggiStringa(TamaMessage.MESS_NOME);
-        String nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME);
+        String nome1 = InputDati.leggiStringa(TamaMessage.MESS_NOME).toUpperCase();
+        String nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME).toUpperCase();
         while(nome1.equals(nome2)){
-            nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME);
+
+            System.out.println("\nI giocatori non possono avere lo stesso nome\n");
+            nome2 = InputDati.leggiStringa(TamaMessage.MESS_NOME).toUpperCase();
+
         }
         int nElementi = InputDati.leggiIntero(TamaMessage.NUMERO_ELEMENTI,3,10);
         return new Scontro(nome1, nome2, nElementi);

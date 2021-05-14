@@ -11,7 +11,7 @@ public class TamaMessage {
             + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\r\n"
             + "║   Benvenuto nel mondo dei Tamagolem! :-)    ║ \r\n"
             + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\r\n"
-            + "\r\nLo scontro termina quando tutti i Tamagolem di uno dei giocatori non sono piu in grado di lottare.\r\n";
+            + "\r\nLo scontro termina quando tutti i Tamagolem di uno dei giocatori non sono piu in grado di lottare.";
 
 
     //menu visualizzato dall'utente nel primo switch
