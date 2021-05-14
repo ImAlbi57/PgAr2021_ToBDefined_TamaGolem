@@ -4,6 +4,9 @@ import it.unibs.fp.mylib.InputDati;
 
 import java.util.ArrayList;
 
+/***
+ * Classe per inizializzare il costruttore di giocatore e assegnare i tamagolem ai giocatori
+ */
 public class Giocatore {
 
     public static final String INSERISCI_NOME_TAMA = "Inserisci il nome del Tamagolem: ";
@@ -13,32 +16,57 @@ public class Giocatore {
     private String nome;
     private ArrayList<TamaGolem> tamagolems;
 
+
+    /***
+     * Metodo costruttore di giocatore
+     * @param g, cioè il giocatore
+     */
     //costruttore del giocatore
     public Giocatore(Giocatore g){
         this.nome = g.getNome();
         this.tamagolems = new ArrayList<>(g.getTamagolems());
     }
 
+
+    //PER DEBUG
     public Giocatore(String nome, ArrayList<TamaGolem> tamagolems) {
         this.nome = nome;
         this.tamagolems = tamagolems;
     }
 
+
+    /***
+     * Metodo costruttore di giocatore
+     * @param nome, cioè il nome del giocatore
+     */
     public Giocatore(String nome) {
         this.nome = nome;
         this.tamagolems = new ArrayList<>();
     }
 
     //GETTERS
+
+    /***
+     * Getter di nome
+     * @return nome del giocatore
+     */
     public String getNome() {
         return nome;
     }
 
+    /***
+     * Getter di tamagolems
+     * @return arraylist tamagolems
+     */
     public ArrayList<TamaGolem> getTamagolems() {
         return tamagolems;
     }
 
 
+    /***
+     * Metodo per controllare il numero di tamagolem ancora disponibili in squadra
+     * @return true se ci sono oppure false
+     */
     public boolean hasTamagolem() {
         for(TamaGolem t : tamagolems){
             if(t.getVita()>0 || !t.isUsato()){
@@ -48,6 +76,10 @@ public class Giocatore {
         return false;
     }
 
+
+    /***
+     * Metodo per inizializzare ed inserire un tamagotchi nella squadra
+     */
     public void inputTama(){
         System.out.println(INSERIMENTO_TAMA + this.nome);
         for (int i = 0; i < Config.getNumGolem(); i++) {
@@ -56,6 +88,11 @@ public class Giocatore {
         }
     }
 
+
+    /***
+     * Metodo per selezionare il tamagolem da evocare
+     * @return il tamagolem selezionato
+     */
     public TamaGolem selectTamagolem() {
         //Controllo se sono presenti tamagolem
         if(tamagolems.size() <= 0)
@@ -81,6 +118,10 @@ public class Giocatore {
         return tamagolems.get(posScelta);
     }
 
+
+    /***
+     *Metodo per resettare le modifiche avvenute dopo la configurazione iniziale della partita
+     */
     public void resetModifiche(){
         for(TamaGolem t : tamagolems){
             t.setUsato(false);
@@ -89,6 +130,9 @@ public class Giocatore {
     }
 
 
+    /***
+     * Metodo per stampare i tamagolem rimasti
+     */
     private void stampaGolem(){
         for (int i = 0; i <tamagolems.size(); i++) {
             if(!tamagolems.get(i).isUsato())
@@ -96,6 +140,11 @@ public class Giocatore {
         }
     }
 
+
+    /***
+     * Metodo to string
+     * @return nome del tamagolem
+     */
     public String toString(){
         return this.nome;
     }

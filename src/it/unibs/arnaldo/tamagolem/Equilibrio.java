@@ -4,11 +4,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+/***
+ * Classe per determinare l'equilibrio del mondo
+ * @author ToBdefined
+ */
 public class Equilibrio {
     private ArrayList<Elemento> elementi;
     private int [][] adiacenza;
     private int nElementi;
 
+
+    /***
+     * Costruttore di equilibrio
+     * @param nElementi, cioè il numero di elementi esistenti
+     */
     public Equilibrio(int nElementi){
         this.nElementi = nElementi;
         this.elementi = new ArrayList<>();
@@ -17,6 +26,11 @@ public class Equilibrio {
         initValues();
     }
 
+
+    /***
+     * Metodo per stabilire gli elementi presenti nella partita
+     * @param num, cioe il numero di elementi esistenti
+     */
     //aggiunge n elementi !!! verifica il valore di setsummax
     private void initElementi(int num){
         TipoElemento[] possibili = TipoElemento.values();
@@ -26,6 +40,10 @@ public class Equilibrio {
         }
     }
 
+
+    /***
+     * Metodo per generare la matrice di adiacenza dell'equilibrio
+     */
     public void initValues(){
         for(int i = 0; i < nElementi-1; i++) {
             for (int j = 0; j < nElementi-1; j++) {
@@ -62,6 +80,12 @@ public class Equilibrio {
         }
     }
 
+
+    /***
+     * Metodo per creare un interazione tra due elementi
+     * @param posForte, cioè l'elemento forte
+     * @param posDebole, cioè l'elemento debole
+     */
     private void creaArcoPesato(int posForte, int posDebole) {
         //Imposto il forte a un valore random tra 1 e il massimo disponibile
         int peso = genPeso(posForte, posDebole);
@@ -73,6 +97,13 @@ public class Equilibrio {
         elementi.get(posDebole).addValEnt(peso);
     }
 
+
+    /***
+     * Metodo per generare il valore dell'interazione tra i due elementi
+     * @param posForte, cioè l'elemento forte
+     * @param posDebole, cioè l'elemento debole
+     * @return peso, cioè il valore dell'arco pesato
+     */
     private int genPeso(int posForte, int posDebole) {
         Random rand = new Random();
         int maxRand = Config.getMaxPotenza();
@@ -89,6 +120,11 @@ public class Equilibrio {
         return peso;
     }
 
+
+    /***
+     * Metodo per verificare se la somma dei valori d'interazione di un elemento è zero
+     * @return true  se la somma è zero oppure false
+     */
     public boolean checkEquilibrio(){
         //Scorro tutti gli elementi, se trovo qualcosa non bilanciato ritorno falso, altrimenti in fondo ritorno true
         for(int i=0; i<nElementi; i++)
@@ -97,17 +133,13 @@ public class Equilibrio {
         return true;
     }
 
-    public int sommatoriaMatrice(){
-        int sum = 0;
-        for (int i = 0; i < nElementi; i++) {
-            for (int j = 0; j < nElementi; j++) {
-                if(adiacenza[i][j] > 0)
-                    sum += adiacenza[i][j];
-            }
-        }
-        return sum;
-    }
 
+    /***
+     * Getter di adiacenza[][]
+     * @param attaccante, cioè l'elemento forte
+     * @param subente, cioè l'elemento debole
+     * @return adiacenza[posAtk][posDef], cioè la potenza dell'interazione tra i due elementi
+     */
     public int getPotenza(TipoElemento attaccante, TipoElemento subente){
         int posAtk = getElementValue(attaccante);
         int posDef = getElementValue(subente);
@@ -115,14 +147,29 @@ public class Equilibrio {
         return adiacenza[posAtk][posDef];
     }
 
+
+    /***
+     * Getter dell'indice di un elemento
+     * @param e, cioè l'elemento da ricercare
+     * @return l'indice della posizione di tale elemento
+     */
     public int getElementValue(TipoElemento e){
         return elementi.indexOf(new Elemento(e));
     }
 
+
+    /***
+     *Getter dei tipi disponibili nella partita
+     * @return tutti i tipi presenti durante la partita
+     */
     public TipoElemento[] getTipiDisponibili(){
         return Arrays.copyOf(TipoElemento.values(), Config.getNumElementi());
     }
 
+
+    /***
+     *Metodo per stampare la matrice di adiacenza
+     */
     public void printCarino(){
         //Stampa lo slash
         System.out.print("/  ");
@@ -140,12 +187,10 @@ public class Equilibrio {
         }
     }
 
-    public void printPesiAttuali(){
-        for (int i = 0; i < nElementi; i++) {
-            System.out.println(elementi.get(i).getTipo() + " -> " + elementi.get(i).getSumAct());
-        }
-    }
 
+    /***
+     *Metodo per stampare le adiacenze
+     */
     public void printPesiElem(){
         for (int i = 0; i < nElementi; i++) {
             System.out.print(elementi.get(i).getTipo() + " -> ");
@@ -153,15 +198,6 @@ public class Equilibrio {
                 if(i != j){
                     System.out.print(elementi.get(j).getTipo() + ": " + adiacenza[i][j] + ";  ");
                 }
-            }
-            System.out.println();
-        }
-    }
-
-    public void printAll(){
-        for(int i = 0; i < nElementi; i++) {
-            for(int j = 0; j < nElementi; j++){
-                System.out.print(adiacenza[i][j] + " ");
             }
             System.out.println();
         }

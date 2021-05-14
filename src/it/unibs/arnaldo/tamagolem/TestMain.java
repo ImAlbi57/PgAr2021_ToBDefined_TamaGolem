@@ -1,5 +1,8 @@
 package it.unibs.arnaldo.tamagolem;
 
+/***
+ * Classe di test
+ */
 public class TestMain {
     public static void main(String[] args) {
         Config.init(5);
