@@ -35,7 +35,7 @@ public class TamaGolem {
     }
 
     public void setPietre(ArrayList<TipoElemento> pietre){
-        pietre = new ArrayList<>(pietre);
+        this.pietre = new ArrayList<>(pietre);
     }
 
     public ArrayList<TipoElemento> getPietre() {

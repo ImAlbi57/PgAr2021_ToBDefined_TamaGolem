@@ -1,9 +1,27 @@
 package it.unibs.arnaldo.tamagolem;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class TestMain {
     public static void main(String[] args) {
-        /*Scontro sc = new Scontro("Pippo", "Franco", 5);
-        System.out.println(sc.prelevaPietre(TipoElemento.VELENO, 2));*/
+        //Scontro sc = new Scontro("nome1","nome2", 5);
+
+        /*NON SAREBBERO DA FARE MA E' PER VELOCIZZARE I TEST*/
+        ArrayList<TamaGolem> tama1 = new ArrayList<>();
+        tama1.add(new TamaGolem("Giuseppe"));
+        tama1.add(new TamaGolem("Giacomo"));
+        ArrayList<TamaGolem> tama2 = new ArrayList<>();
+        tama2.add(new TamaGolem("Andrea"));
+        tama2.add(new TamaGolem("Aristide"));
+
+        Giocatore g1 = new Giocatore("Pippo", tama1);
+        Giocatore g2 = new Giocatore("Franco", tama2);
+
+        Scontro sc = new Scontro(g1, g2, 5);
+        /*NON SAREBBERO DA FARE MA E' PER VELOCIZZARE I TEST*/
+
+        sc.gioca();
 
         /*System.out.println("Forse ho creato il progetto");
         Equilibrio eq = new Equilibrio(5);

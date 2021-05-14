@@ -79,7 +79,7 @@ public class Equilibrio {
 
     private int genPeso(int posForte, int posDebole) {
         Random rand = new Random();
-        int maxRand = 4;
+        int maxRand = Config.getMaxPotenza();
         while(Math.abs(elementi.get(posForte).getSumAct() - maxRand) > Config.getMaxPotenza() ||
                 Math.abs(elementi.get(posDebole).getSumAct() + maxRand) > Config.getMaxPotenza()){
             maxRand--;

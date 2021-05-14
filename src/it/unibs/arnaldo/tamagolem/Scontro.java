@@ -3,10 +3,8 @@ package it.unibs.arnaldo.tamagolem;
 import it.unibs.fp.mylib.InputDati;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.concurrent.CompletableFuture;
 
 public class Scontro {
 
@@ -17,13 +15,24 @@ public class Scontro {
     private Equilibrio eq;
     private HashMap<TipoElemento, Integer> magazzino;
 
+    /*[DEBUG ONLY]*/
+    public Scontro(Giocatore player1, Giocatore player2, int nElementi) {
+        Config.init(nElementi);
 
-    public Scontro(String player1, String player2, int nElementi) {
         this.player1 = new Giocatore(player1);
         this.player2 = new Giocatore(player2);
         this.eq = new Equilibrio(nElementi);
 
+        this.magazzino = creaMagazzino();
+    }
+
+    public Scontro(String player1, String player2, int nElementi) {
         Config.init(nElementi);
+
+        this.player1 = new Giocatore(player1);
+        this.player2 = new Giocatore(player2);
+        this.eq = new Equilibrio(nElementi);
+
         this.magazzino = creaMagazzino();
     }
 
@@ -54,8 +63,11 @@ public class Scontro {
     }
 
     public void gioca(){
-        //Controllo se ho tutto il necessario
-
+        //Fase preparatoria, input dei tamagochi
+        if(player1.getTamagolems().size() == 0)
+            player1.inputTama();
+        if(player2.getTamagolems().size() == 0)
+            player2.inputTama();
 
         //Determino chi va primo, faccio un rand e se è true scambio i giocatori
         Random rand = new Random();
@@ -93,9 +105,9 @@ public class Scontro {
 
             //Se è maggiore di 0, allora p1 prevale su p2, p2 subisce danno, altrimenti viceversa
             if(potenza>0)
-                tamaP2 = gestisciDanni(tamaP2, potenza);
+                tamaP2 = gestisciDanni(tamaP2, Math.abs(potenza));
             else
-                tamaP1 = gestisciDanni(tamaP1, potenza);
+                tamaP1 = gestisciDanni(tamaP1, Math.abs(potenza));
 
             //check vittoria
             vittoria = checkVittoria();
@@ -103,9 +115,13 @@ public class Scontro {
         }
 
         //Stampa chi ha vinto
+        stampaVittoria(vittoria);
 
 
+    }
 
+    private void stampaVittoria(int vittoria) {
+        System.out.println((vittoria==1 ? player1 : player2) + " HA VINTO!");
     }
 
     private TamaGolem evoca(Giocatore player) {
@@ -132,7 +148,7 @@ public class Scontro {
         TipoElemento[] possibili = eq.getTipiDisponibili();
 
         while(qtScelte < Config.getNumPietre()){
-            System.out.print("Pietre possibili: ");
+            System.out.println("Pietre possibili: ");
             for(int i = 0; i < possibili.length; i++){
                 System.out.println("("+i+")" + possibili[i] + ": " + getNumeroPietre(possibili[i]));
             }
@@ -158,6 +174,7 @@ public class Scontro {
 
         //check morte
         if(subente.getVita() <= 0){
+            System.out.println(subente + " è morto!");
             //rimuovo il tamagochi e rimetto nel magazzino le pietre
             riponiPietre(subente.getPietre());
             subente = null;
@@ -189,9 +206,6 @@ public class Scontro {
 
         return 0;
     }
-
-
-
 
     public Giocatore getPlayer1() {
         return player1;

@@ -27,7 +27,7 @@ public class Giocatore {
 
     public boolean hasTamagolem() {
         for(TamaGolem t : tamagolems){
-            if(t.getVita()>0){
+            if(!t.isUsato()){
                 return true;
             }
         }
@@ -83,5 +83,8 @@ public class Giocatore {
         }
     }
 
+    public String toString(){
+        return this.nome;
+    }
 
 }
