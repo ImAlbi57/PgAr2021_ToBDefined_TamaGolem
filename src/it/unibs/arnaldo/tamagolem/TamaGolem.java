@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class TamaGolem {
 
-    private String nome;
+    private final String nome;
     private ArrayList<TipoElemento> pietre;
     private boolean usato;
     private int vita;
@@ -25,7 +25,7 @@ public class TamaGolem {
 
     /***
      * Costruttore tamagolem
-     * @param nome
+     * @param nome nome
      */
     public TamaGolem(String nome) {
         this.usato = false;
@@ -62,7 +62,7 @@ public class TamaGolem {
     //SETTERS
     /***
      * Setter di usato
-     * @param usato
+     * @param usato usato
      */
     public void setUsato(boolean usato) {
         this.usato = usato;
@@ -70,7 +70,7 @@ public class TamaGolem {
 
     /***
      * Setter di vita
-     * @param vita
+     * @param vita vita
      */
     public void setVita(int vita) {
         this.vita = vita;
@@ -78,7 +78,7 @@ public class TamaGolem {
 
     /***
      *Setter di pietre
-     * @param pietre
+     * @param pietre pietre
      */
     public void setPietre(ArrayList<TipoElemento> pietre){
         this.pietre = new ArrayList<>(pietre);

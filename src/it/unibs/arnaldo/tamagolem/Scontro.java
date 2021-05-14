@@ -18,10 +18,10 @@ public class Scontro {
     public static final String SCELTA = "Scelta: ";
     public static final String NON_DISPONIBILE = "Elemento non disponibile! \nScelta: ";
     public static final String QUANTITA = "\nQuante ne vuoi? ";
-    public static final String ERRORE = "Il numero selezionato supera il numero massimo di pietre per il tuo Tamagolem";
-    public static final String ERRORE_DI_SELEZIONE = ERRORE;
+    public static final String ERRORE_DI_SELEZIONE = "Il numero selezionato supera il numero massimo di pietre per il tuo Tamagolem";
     public static final String VITTORIA = " HA VINTO!";
     public static final String RIVELAZIONE_EQUILIBRIO = "\n\nRIVELAZIONE DELL'EQUILIBRIO";
+    public static final String VITTORIA_MEME = " HA VINTO LA BATTAGLIA DELLA VITA!";
 
     //attributi
     private Giocatore player1;
@@ -30,17 +30,6 @@ public class Scontro {
     private TamaGolem tamaP2;
     private Equilibrio eq;
     private HashMap<TipoElemento, Integer> magazzino;
-
-    /*[DEBUG ONLY]*/
-    public Scontro(Giocatore player1, Giocatore player2, int nElementi) {
-        Config.init(nElementi);
-
-        this.player1 = new Giocatore(player1);
-        this.player2 = new Giocatore(player2);
-        this.eq = new Equilibrio(nElementi);
-
-        this.magazzino = creaMagazzino();
-    }
 
 
     /***
@@ -58,25 +47,6 @@ public class Scontro {
 
         this.magazzino = creaMagazzino();
     }
-
-
-    //GETTERS
-    /***
-     * Getter di player1
-     * @return player1
-     */
-    public Giocatore getPlayer1() {
-        return player1;
-    }
-
-    /***
-     * Getter di player2
-     * @return player2
-     */
-    public Giocatore getPlayer2() {
-        return player2;
-    }
-
 
     /***
      * Metodo per creare la scorta comune di pietre
@@ -96,7 +66,7 @@ public class Scontro {
 
     /***
      * Metodo per prendere il numero massimo di pietre disponibili di un certo elemento nella scorta
-     * @param elem
+     * @param elem tipo di elemento
      * @return numero pietre dell' elemento
      */
     public int getNumeroPietre(TipoElemento elem){
@@ -105,22 +75,25 @@ public class Scontro {
 
 
     /***
-     * Metodo per prendere una pietra dalla scorta comune
-     * @param elem
-     * @param nPietre
-     * @return numero pietre rimaste
+     * Metodo per prendere una N pietre dalla scorta comune
+     * @param elem tipo di elemento
+     * @param nPietre numero di pietre
      */
-    public int prelevaPietre(TipoElemento elem, int nPietre) {
+    public void prelevaPietre(TipoElemento elem, int nPietre) {
+        //Se l'elemento non esiste esco
         if (!magazzino.containsKey(elem))
-            return -1;
+            return;
         int pietreAttuali = magazzino.get(elem);
-        if (pietreAttuali < nPietre)
-            return -1;
-        else
+        //Se la richiesta NON supera la disponibilità prelevo
+        if (pietreAttuali >= nPietre)
             magazzino.replace(elem, pietreAttuali - nPietre);
-        return 0;
     }
 
+
+    /***
+     * Metodo per la rivincita
+     * Prima resetta le modifiche dello scontro precedente (vite e le pietre), ricreo il magazzino e poi richiamo gioca
+     */
     public void rivincita() {
         player1.resetModifiche();
         player2.resetModifiche();
@@ -157,6 +130,7 @@ public class Scontro {
         int vittoria = 0;
 
         while(vittoria == 0){
+            //Controllo se sono da evocare i tamagolem
             if(tamaP1 == null)
                 tamaP1 = evoca(player1);
             if(tamaP2 == null)
@@ -184,15 +158,13 @@ public class Scontro {
             round++;
         }
 
-        //Stampa chi ha vinto
+        //Stampa chi ha vinto e rivela l'equilibrio
         stampaVittoria(vittoria);
-
-
     }
 
     /***
      * Metodo per evocare un tamagolem dalla propria squadra
-     * @param player
+     * @param player giocatore
      * @return null se non sono rimasti tamagolem oppure il tamagolem scelto
      */
     private TamaGolem evoca(Giocatore player) {
@@ -217,18 +189,23 @@ public class Scontro {
      * @return gli elementi delle pietre scelte
      */
     private ArrayList<TipoElemento> inputPietre() {
+        String[] simboli = {"🌪️","🔥","⛰","🌿","🌊","🌫️","🐲","🌩","☢","🧊"};
         int qtScelte = 0;
         ArrayList<TipoElemento> scelte = new ArrayList<>();
 
         System.out.println(SCEGLI_PIETRE);
         TipoElemento[] possibili = eq.getTipiDisponibili();
 
+        //Finché non ha raggiunto il numero di pietre da prelevare
         while(qtScelte < Config.getNumPietre()){
             int pietre_rimaste = Config.getNumPietre()-qtScelte;
+
+            //Stampo l'elenco di pietre disponibili
             System.out.println("Pietre possibili [sceglierne "+ pietre_rimaste +"]: ");
             for(int i = 0; i < possibili.length; i++){
-                System.out.println("("+i+")" + possibili[i] + ": " + getNumeroPietre(possibili[i]));
+                System.out.println("("+i+") " + possibili[i] + " " + simboli[i] + ": " + getNumeroPietre(possibili[i]));
             }
+            //Continuo a prendere in input il tipo finché ne prendo uno con pietre disponibili
             int tipo = InputDati.leggiIntero(SCELTA,0,possibili.length-1);
             while(getNumeroPietre(possibili[tipo]) == 0)
                 tipo = InputDati.leggiIntero(NON_DISPONIBILE,0,possibili.length-1);
@@ -236,6 +213,7 @@ public class Scontro {
 
             System.out.println();
 
+            //Prelevo le pietre
             if(qtScelte+qt <= Config.getNumPietre()){
                 prelevaPietre(possibili[tipo], qt);
                 qtScelte+=qt;
@@ -277,7 +255,7 @@ public class Scontro {
 
     /***
      * Metodo per restituire le pietre tenute dal tamagolem sconfitto
-     * @param pietre
+     * @param pietre ArrayList delle pietre
      */
     private void riponiPietre(ArrayList<TipoElemento> pietre) {
         for (TipoElemento pietra : pietre) {
@@ -311,11 +289,13 @@ public class Scontro {
      * @param vittoria, cioè il numero che indica quale dei due giocatori ha vinto
      */
     private void stampaVittoria(int vittoria) {
+        System.out.println();
         System.out.println((vittoria==1 ? player1 : player2) + VITTORIA);
+        System.out.println((vittoria==1 ? player1 : player2) + VITTORIA_MEME);
         System.out.println(RIVELAZIONE_EQUILIBRIO);
         eq.printPesiElem();
         System.out.println();
-        eq.printCarino();
+        eq.printMatAdiacenza();
 
     }
 }

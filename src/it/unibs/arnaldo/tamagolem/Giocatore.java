@@ -13,7 +13,7 @@ public class Giocatore {
     public static final String SCELTA = "Scelta: ";
     public static final String INSERIMENTO_TAMA = "\n➢ Inserimento dei TamaGolem di ";
 
-    private String nome;
+    private final String nome;
     private ArrayList<TamaGolem> tamagolems;
 
 
@@ -25,13 +25,6 @@ public class Giocatore {
     public Giocatore(Giocatore g){
         this.nome = g.getNome();
         this.tamagolems = new ArrayList<>(g.getTamagolems());
-    }
-
-
-    //PER DEBUG
-    public Giocatore(String nome, ArrayList<TamaGolem> tamagolems) {
-        this.nome = nome;
-        this.tamagolems = tamagolems;
     }
 
 

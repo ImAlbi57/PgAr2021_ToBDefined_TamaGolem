@@ -9,6 +9,8 @@ import java.util.Random;
  * @author ToBdefined
  */
 public class Equilibrio {
+    public static final String SUBENTI = "→ Subenti";
+    public static final String ATTACCANTI = "↓ Attaccanti";
     private ArrayList<Elemento> elementi;
     private int [][] adiacenza;
     private int nElementi;
@@ -28,10 +30,9 @@ public class Equilibrio {
 
 
     /***
-     * Metodo per stabilire gli elementi presenti nella partita
-     * @param num, cioe il numero di elementi esistenti
+     * Metodo per stabilire gli elementi presenti nella partita e aggiungerli
+     * @param num, cioè il numero di elementi esistenti
      */
-    //aggiunge n elementi !!! verifica il valore di setsummax
     private void initElementi(int num){
         TipoElemento[] possibili = TipoElemento.values();
         for(int i=0; i<num; i++){
@@ -43,6 +44,9 @@ public class Equilibrio {
 
     /***
      * Metodo per generare la matrice di adiacenza dell'equilibrio
+     * Metto a 0 gli elementi della diagonale
+     * Prima genero valori pseudo-random per gli elementi della matrice N-1xN-1 in modo che la loro sommatoria non sia maggiore della potenza massima e che non sia 0
+     * In seguito assegno il valore rimanente di ogni riga al valore opposto a quello della sommatoria della riga stessa (sumRiga = 5 -> valore = -5)
      */
     public void initValues(){
         for(int i = 0; i < nElementi-1; i++) {
@@ -100,6 +104,7 @@ public class Equilibrio {
 
     /***
      * Metodo per generare il valore dell'interazione tra i due elementi
+     * Verifica che il valore generato non mandi a 0 la sommatoria e che non aumenti oltre il limite di potenza l'arco finale
      * @param posForte, cioè l'elemento forte
      * @param posDebole, cioè l'elemento debole
      * @return peso, cioè il valore dell'arco pesato
@@ -107,11 +112,13 @@ public class Equilibrio {
     private int genPeso(int posForte, int posDebole) {
         Random rand = new Random();
         int maxRand = Config.getMaxPotenza();
-        while(Math.abs(elementi.get(posForte).getSumAct() - maxRand) > Config.getMaxPotenza() ||
-                Math.abs(elementi.get(posDebole).getSumAct() + maxRand) > Config.getMaxPotenza()){
+        //Controllo se sfora (ricorda di non mandare maxRand a 1-
+        while(maxRand > 1 && (Math.abs(elementi.get(posForte).getSumAct() - maxRand) > Config.getMaxPotenza() ||
+                Math.abs(elementi.get(posDebole).getSumAct() + maxRand) > Config.getMaxPotenza())){
             maxRand--;
         }
         int peso;
+        //genero finché il valore non manda a 0 nessuna sommatoria dei due elementi
         do {
             peso = rand.nextInt(maxRand) + 1;
         }while (elementi.get(posForte).getSumAct() - peso == 0 ||
@@ -122,8 +129,9 @@ public class Equilibrio {
 
 
     /***
-     * Metodo per verificare se la somma dei valori d'interazione di un elemento è zero
-     * @return true  se la somma è zero oppure false
+     * Metodo per verificare l'equilibrio
+     * Ritorna false quando trova una colonna non bilanciata, ritorna alla fine del metodo altrimenti
+     * @return true/false
      */
     public boolean checkEquilibrio(){
         //Scorro tutti gli elementi, se trovo qualcosa non bilanciato ritorno falso, altrimenti in fondo ritorno true
@@ -135,7 +143,7 @@ public class Equilibrio {
 
 
     /***
-     * Getter di adiacenza[][]
+     * Metodo per prendere la potenza dell'interazione tra 2 elementi, getter di adiacenza[][]
      * @param attaccante, cioè l'elemento forte
      * @param subente, cioè l'elemento debole
      * @return adiacenza[posAtk][posDef], cioè la potenza dell'interazione tra i due elementi
@@ -170,7 +178,9 @@ public class Equilibrio {
     /***
      *Metodo per stampare la matrice di adiacenza
      */
-    public void printCarino(){
+    public void printMatAdiacenza(){
+        System.out.println(SUBENTI);
+        System.out.println(ATTACCANTI);
         //Stampa lo slash
         System.out.print("/  ");
         //Stampa la riga con le iniziali e va a capo
@@ -196,11 +206,10 @@ public class Equilibrio {
             System.out.print(elementi.get(i).getTipo() + " -> ");
             for (int j = 0; j < nElementi; j++) {
                 if(i != j){
-                    System.out.print(elementi.get(j).getTipo() + ": " + adiacenza[i][j] + ";  ");
+                    System.out.print(elementi.get(j).getTipo() + ": " + adiacenza[i][j] + "; ");
                 }
             }
             System.out.println();
         }
     }
-
 }

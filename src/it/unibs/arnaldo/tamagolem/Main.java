@@ -2,8 +2,6 @@ package it.unibs.arnaldo.tamagolem;
 
 import it.unibs.fp.mylib.InputDati;
 
-import java.util.Scanner;
-
 /***
  * Classe main
  * @author ToBdefined
@@ -13,7 +11,7 @@ public class Main {
     /***
      * Metodo main
      * @author toBdefined
-     * @param args
+     * @param args arguments
      */
     public static void main(String[] args) {
         //richiamo il messaggio di benvenuto

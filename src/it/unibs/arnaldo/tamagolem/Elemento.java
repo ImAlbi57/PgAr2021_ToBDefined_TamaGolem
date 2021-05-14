@@ -8,12 +8,12 @@ package it.unibs.arnaldo.tamagolem;
 public class Elemento {
 
     //attributi
-    private TipoElemento tipo;
+    private final TipoElemento tipo;
     private int sumAct;
 
     /***
      * Costruttore di elemento
-     * @param tipo
+     * @param tipo tipo
      */
     public Elemento(TipoElemento tipo){
         this.tipo = tipo;
@@ -41,7 +41,7 @@ public class Elemento {
 
     /***
      * Metodo per aggiungere un peso entrante
-     * @param val
+     * @param val valore da aggiungere
      */
     public void addValEnt(int val) {
         this.sumAct += val;
@@ -50,7 +50,7 @@ public class Elemento {
 
     /***
      * Metodo per aggiungere un peso uscente
-     * @param val
+     * @param val valore da aggiungere
      */
     public void addValUsc(int val) {
         this.sumAct -= val;
@@ -59,7 +59,7 @@ public class Elemento {
 
     /***
      * Metodo per verificare che 2 oggetti siano uguali
-     * @param obj
+     * @param obj oggetto da controllare
      * @return true se l'oggetto passato corrisponde all'oggetto corrente
      */
     @Override
